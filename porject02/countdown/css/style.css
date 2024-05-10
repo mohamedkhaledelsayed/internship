@@ -1,0 +1,29 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: black;
+    color: white;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+#minutes {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.btn {
+    width: 150px;
+    margin: 10px 20px;
+}
+
+#timer {
+    font-size: 3rem;
+    font-weight: bold;
+    background-color: white;
+    color: black
+}
