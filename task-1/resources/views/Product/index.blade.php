@@ -51,7 +51,7 @@
                             <div class="col-sm">
                                 <form action="{{ route('product.destroy', $product->id) }}" method="post">
                                     @csrf
-                                    @method('DELETE')
+                                    @method('DELETE')   
                                     <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                 </form>
                             </div>
