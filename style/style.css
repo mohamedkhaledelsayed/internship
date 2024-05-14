@@ -110,6 +110,7 @@
 }
 
 .dirc p {
+    text-align: right;
     font-size: 1.5rem;
     font-weight: bold;
 }
@@ -125,7 +126,7 @@
     right: -5dvh;
     top: 50%;
     margin-bottom: 5dvh;
-    color: blue;
+    color: white;
     max-width: 30%;
     transform: rotate(90deg);
 }
@@ -162,14 +163,23 @@
     align-items: center;
 }
 
-.tit h1,
-p {
+.tit h1 {
+    position: relative;
+    text-align: center;
+}
+
+.tit p {
     position: relative;
     text-align: center;
 }
 
 .needs h1,
 p {
+    position: relative;
+    text-align: center;
+}
+
+.needs p {
     position: relative;
     text-align: center;
 }
@@ -218,6 +228,11 @@ p {
     text-align: center;
 }
 
+.mb-4 p {
+    position: relative;
+    text-align: center;
+}
+
 .we h1 {
     color: rgb(255, 187, 0);
 }
@@ -253,9 +268,25 @@ p {
     font-size: 3em;
 }
 
-.we-2 h1,
-.bg-p,
-h4 {
+.we-2 h1 {
+    text-align: center;
+    position: relative;
+    color: rgb(255, 187, 0);
+}
+
+.we-2 p {
+    text-align: center;
+    position: relative;
+}
+
+.we-2 .bg-p {
+    text-align: center;
+    position: relative;
+    color: rgb(255, 187, 0);
+}
+
+
+.we-2 h4 {
     text-align: center;
     position: relative;
     color: rgb(255, 187, 0);
@@ -318,6 +349,7 @@ h4 {
 .team-media {
     color: rgb(255, 187, 0);
     text-align: right;
+    /* background-color: red; */
 }
 
 .team-media i {
@@ -364,11 +396,19 @@ h4 {
     padding-top: 10dvh;
     padding-left: 10dvh;
     padding-right: 10dvh;
+    text-align: right;
+    z-index: 10;
 }
 
 
+.prag h4 {
+    color: rgb(255, 187, 0);
+    text-align: right;
+}
+
 .prag p {
     color: white;
+    text-align: right;
 }
 
 .z-box {
@@ -416,10 +456,22 @@ textarea {
     padding-top: 3dvh;
 }
 
-.tex-rigt h4,
-h2,
-h5,
-p {
+.tex-rigt h4 {
+    text-align: right;
+    color: white;
+}
+
+.tex-rigt h2 {
+    text-align: right;
+    color: white;
+}
+
+.tex-rigt h5 {
+    text-align: right;
+    color: white;
+}
+
+.tex-rigt p {
     text-align: right;
     color: white;
 }
