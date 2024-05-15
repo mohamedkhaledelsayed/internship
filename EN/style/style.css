@@ -11,7 +11,7 @@
     height: auto;
     max-height: 100dvh;
     min-height: 100dvh;
-    background: url('../img/header_background_ar.jpg');
+    background: url('../img/header_background_en.jpg');
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -27,23 +27,28 @@
     padding: 0;
     max-width: 100%;
     max-height: 30dvh;
+    padding: auto;
 }
 
 
 .head-left {
     padding: 0;
-    text-align: center;
-    float: left;
+    text-align: right;
+    float: right;
+    /* background-color: yellow; */
 }
 
 .coll {
-    float: left;
+    float: right;
+    /* align-items: center; */
+    /* background-color: red; */
 
 }
 
 .coll p {
     color: white;
-    text-align: center;
+    text-align: left;
+    /* left: 0 !important; */
 }
 
 .colo {
@@ -52,9 +57,10 @@
 }
 
 .phone {
-    float: left;
-    border-right: 1px solid white;
+    float: right;
+    border-left: 1px solid white;
     margin-top: 10px;
+    margin-right: 10px;
 }
 
 .phone i {
@@ -62,6 +68,7 @@
 }
 
 .lang {
+    float: right;
     display: flex;
     justify-content: space-around;
     padding-top: 10px;
@@ -79,7 +86,7 @@
 
 .head-right {
     float: left;
-    text-align: right;
+    /* text-align: right; */
 }
 
 
@@ -96,14 +103,18 @@
 
 .about {
     position: relative;
-    align-items: right;
+    /* align-items: right; */
     margin-top: 10dvh;
 }
 
 .dirc {
+    /* background-color: red; */
     position: absolute;
-    text-align: right;
-    right: 0;
+    text-align: left;
+    float: left;
+    /* align-items: center; */
+    /* width: 100%; */
+    /* right: 0; */
 }
 
 .dirc h1 {
@@ -111,7 +122,7 @@
 }
 
 .dirc p {
-    text-align: right;
+    text-align: left;
     font-size: 1.5rem;
     font-weight: bold;
 }
@@ -120,24 +131,25 @@
     color: rgb(255, 187, 0);
 }
 
-.nav-link {
-    color: black;
-}
+
 
 .new-right {
     position: absolute;
-    right: -5dvh;
+    left: 0;
     top: 50%;
     margin-bottom: 5dvh;
     color: white;
     max-width: 30%;
     transform: rotate(90deg);
+    /* background-color: red; */
 }
 
 .mad {
+    position: absolute;
     min-height: 10dvh;
     transform: rotate(90deg);
-    max-width: 30%;
+    /* max-width: 30%; */
+    right: 0;
 }
 
 .mad i {
@@ -309,13 +321,18 @@ p {
     padding: 10px;
 }
 
+.mar-righ {
+    margin-left: 0;
+    /* background-color: rgb(255, 0, 0, .5); */
+}
 
 .btn-marg {
-    margin: 5px;
+    margin-left: 0px;
     padding-bottom: 0;
-
-
+    float: right;
+    /* background-color: red; */
 }
+
 
 .btn-col {
     background-color: rgb(255, 187, 0);
@@ -337,8 +354,8 @@ p {
 
 .team-data .team-inf {
     padding-top: 1dvh;
-    padding-left: 5dvh;
-    padding-right: 0;
+    /* padding-left: 5dvh; */
+    /* padding-right: 0; */
     margin-bottom: 2dvh;
     right: 0;
     border-bottom: 1px solid;
@@ -346,12 +363,13 @@ p {
 }
 
 .team-inf p {
-    text-align: right;
+    text-align: left;
 }
 
 .team-media {
+    /* background-color: red; */
     color: rgb(255, 187, 0);
-    text-align: right;
+    text-align: left;
     /* background-color: red; */
 }
 
@@ -368,7 +386,7 @@ p {
     min-height: 100dvh;
     max-height: 100dvh;
     height: auto;
-    background: url('../img/cunactor.jpg');
+    background: url('../img/wallpaperflare.com_wallpaper.jpg');
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -399,19 +417,19 @@ p {
     padding-top: 10dvh;
     padding-left: 10dvh;
     padding-right: 10dvh;
-    text-align: right;
+    text-align: left;
     z-index: 10;
 }
 
 
 .prag h4 {
     color: rgb(255, 187, 0);
-    text-align: right;
+    text-align: left;
 }
 
 .prag p {
     color: white;
-    text-align: right;
+    text-align: left;
 }
 
 .z-box {
@@ -421,11 +439,12 @@ p {
 .g-3 {
     background-color: rgb(32, 36, 68, .5);
     text-align: center;
+    /* background-color: red; */
 }
 
 .g-3 input,
 textarea {
-    text-align: right;
+    text-align: left;
     background-color: rgb(32, 36, 68, .5);
 }
 
@@ -460,22 +479,22 @@ textarea {
 }
 
 .tex-rigt h4 {
-    text-align: right;
+    text-align: left;
     color: white;
 }
 
 .tex-rigt h2 {
-    text-align: right;
+    text-align: left;
     color: white;
 }
 
 .tex-rigt h5 {
-    text-align: right;
+    text-align: left;
     color: white;
 }
 
 .tex-rigt p {
-    text-align: right;
+    text-align: left;
     color: white;
 }
 
@@ -489,9 +508,13 @@ textarea {
     border: none;
 }
 
-.sen {
+.flo {
     float: right;
+}
+
+.sen {
     color: white;
+    float: right;
 }
 
 #btn {
