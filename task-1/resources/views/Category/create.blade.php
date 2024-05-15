@@ -13,38 +13,44 @@
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-warning">
-    <div class="container-fluid">
 
-        <div class="justify-end ">
-            <div class="col ">
-            </div>
-        </div>
+    <div class="container-fluid">
+        <h1>{{trans('main.Categories')}}</h1>
+        @include('layouts.trans-selector')
+    </div>
 </nav>
 
 <div class="container h-100 mt-5">
     <div class="row h-100 justify-content-center align-items-center">
         <div class="col-10 col-md-8 col-lg-6">
-            <h3>Add a category</h3>
+            <h3>{{trans('main.add category')}}</h3>
             <form action="{{ route('category.store') }}" method="post">
                 @csrf
                 <div class="form-group">
-                    <label for="title">name_ar</label>
-                    <input type="text" class="form-control" name="name_ar" required>
-                    @if($errors->has('name_ar'))
-                        <div class="alert alert-danger">{{ $errors->first('name_ar') }}</div>
+                    <label for="title">{{trans('main.name_ar')}} </label>
+                    <input type="text" class="form-control" name="name" >
+                    @if($errors->has('name'))
+                        <div class="alert alert-danger">{{ $errors->first('name') }}</div>
                     @endif
                 </div>
                 <div class="form-group">
-                    <label for="title">name_en</label>
-                    <input type="text" class="form-control"  name="name_en" required>
+                    <label for="title">{{trans('main.name_en')}}</label>
+                    <input type="text" class="form-control"  name="name_en" >
                     @if($errors->has('name_en'))
                         <div class="alert alert-danger">{{ $errors->first('name_en') }}</div>
                     @endif
                 </div>
+        <div class="form-group">
+                    <label for="title">{{trans('main.description')}}</label>
+                   <textarea type="text" class="form-control"  name="description" >
+                            </textarea>
+
+                </div>
 
 
                 <br>
-                <button type="submit" class="btn btn-primary">Create category</button>
+                <button type="submit" class="btn btn-primary">{{trans('main.Create category')}}</button>
+                <a href="{{route('category.index')}}" class="btn btn-success "> {{trans('main.back')}}</a>
             </form>
         </div>
     </div>

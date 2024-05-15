@@ -4,6 +4,8 @@ use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\Product\ProductController;
 use Illuminate\Support\Facades\Route;
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,10 +17,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+    ], function(){
+
+    Route::get('/', function () {
+        return view('index');
+    })->name('index');
+    Route::resource('category',CategoryController::class);
+    Route::resource('product',ProductController::class);
 });
-Route::resource('category',CategoryController::class);
-Route::resource('product',ProductController::class);
+
+
+
 
 

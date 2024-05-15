@@ -14,37 +14,47 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-warning">
     <div class="container-fluid">
-        <a class="navbar-brand h1" href={{ route('product.index') }}>Product</a>
-        <div class="justify-end ">
-            <div class="col ">
-            </div>
-        </div>
+
+        <h1>{{trans('main.Products')}}</h1>
+
+        @include('layouts.trans-selector')
+
+    </div>
 </nav>
 <div class="container h-100 mt-5">
     <div class="row h-100 justify-content-center align-items-center">
 
         <div class="card">
             <div class="card-body">
+                <label>{{trans('main.name')}}</label>
+
                 <p class="card-title">{{ $product->name }}</p>
+                <label>{{trans('main.price')}}</label>
                 <p class="card-text">{{ $product->price }}</p>
-                <p class="card" type="file">{{ $product->image }}</p>
+                <label>{{trans('main.image')}}</label>
+                <br>
                 <img src="{{asset($product->image) }}" class="w-100"  style="width:100px"  >
-                <p class="card-text">{{ $product->Category->name }}</p>
+                <br>
+                <label>{{trans('main.Category')}}</label>
+               <p>{{ $product->category->name_ar  }}</p>
+                <p class="card-text"></p>
             </div>
 
 
             <div class="card-footer">
-                <a href="{{ route('product.edit', $product->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                <a href="{{ route('product.edit', $product->id) }}" class="btn btn-primary btn-sm">{{trans('main.edit')}}</a>
 
                 <form action="{{ route('product.destroy', $product->id) }}" method="post">
                     @csrf
                     @method('DELETE')
                     <br>
-                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    <button type="submit" class="btn btn-danger btn-sm">{{trans('main.delete')}}</button>
                 </form>
             </div>
         </div>
     </div>
+    <a href="{{route('product.index')}}" class="btn btn-success "> {{trans('main.back')}}</a>
+
 </div>
 </body>
 

@@ -19,8 +19,8 @@ class NotificationSendController extends Controller
 
     public function sendNotification(Request $request)
     {
-        $url = 'https://fcm.googleapis.com/fcm/send';
 
+        $url = 'https://fcm.googleapis.com/fcm/send';
         $FcmToken = User::whereNotNull('device_token')->pluck('device_token')->all();
 
         $serverKey = 'AAAAqwiVsSc:APA91bFeInU9nhI8iljkWrM9dyMLypv7MXwwrZMg7UTNNgOYsRqwxsQxxf_nm3I_GaquGkwG60aYGxg_HsZdFl9L7IXxYxpNfaNFAWHrOAp1Jp_OgWSI4lSum3JiJ8-olo48jA_caHqJ'; // ADD SERVER KEY HERE PROVIDED BY FCM

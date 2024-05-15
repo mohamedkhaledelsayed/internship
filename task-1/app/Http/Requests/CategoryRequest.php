@@ -22,17 +22,18 @@ class CategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name_ar' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'name_en' => 'required|string|max:255',
+
 
         ];
     }
     public function messages(): array
     {
         return [
-            'name_ar.required' => 'The name field is required.',
-            'name_ar.string' => 'The name field must be a string.',
-            'name_ar.max' => 'The name field must not exceed 255 characters.',
+            'name.required' => 'The name field is required.',
+            'name.string' => 'The name field must be a string.',
+            'name.max' => 'The name field must not exceed 255 characters.',
             'name_en.required' => 'The name field is required.',
             'name_en.string' => 'The name field must be a string.',
             'name_en.max' => 'The name field must not exceed 255 characters.',

@@ -13,28 +13,26 @@
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-warning">
-    <div class="container-fluid">
-        <h1>Product</h1>
-        <div class="justify-end ">
-            <div class="col ">
 
-                <a class="btn btn-sm btn-success" href={{ route('product.create') }}>Add product</a>
-            </div>
-        </div>
+    <div class="container-fluid">
+        <h1>{{trans('main.Products')}}</h1>
+        @include('layouts.trans-selector')
+    </div>
 </nav>
 <div class="container mt-5">
+    <a class="btn btn-sm btn-success" href={{ route('product.create') }}>{{trans('main.add product')}}</a>
     <div class="row">
         @foreach ($products as $product)
             <div class="col-sm">
                 <div class="card">
                     <div class="card-body">
-                        <label>الاسم</label>
+                        <label>{{trans('main.name')}}</label>
                         <p class="card-text">{{ $product->name }}</p>
-                        <label>السعر</label>
+                        <label>{{trans('main.price')}}</label>
                         <p class="card-text">{{$product->price }}</p>
-                        <label>الصورة</label>
+                        <label>{{trans('main.image')}}</label>
                         <p class="card">{{$product->image }}</p>
-                        <label>الصنف</label>
+                        <label>{{trans('main.Category')}}</label>
                         <p class="card-text">{{$product->Category->name_ar }}</p>
 
                     </div>
@@ -43,24 +41,28 @@
                         <div class="row">
                             <div class="col-sm">
                                 <a href="{{ route('product.edit', $product->id) }}"
-                                   class="btn btn-primary btn-sm">Edit</a>
+                                   class="btn btn-primary btn-sm">{{trans('main.edit')}}</a>
                             </div> <div class="col-sm">
                                 <a href="{{ route('product.show', $product->id) }}"
-                                   class="btn btn-success btn-sm">show</a>
+                                   class="btn btn-success btn-sm">{{trans('main.show')}}</a>
                             </div>
                             <div class="col-sm">
                                 <form action="{{ route('product.destroy', $product->id) }}" method="post">
                                     @csrf
-                                    @method('DELETE')   
-                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">{{trans('main.delete')}}</button>
+
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         @endforeach
     </div>
+    <a href="{{route('index')}}" class="btn btn-success "> {{trans('main.back')}}</a>
+
 </div>
 </body>
 

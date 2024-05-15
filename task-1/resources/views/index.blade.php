@@ -13,14 +13,13 @@
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-warning">
-    <div class="container-fluid">
-        <h1>Category and Products</h1>
-        <div class="justify-end ">
-            <div class="col ">
 
-            </div>
-        </div>
+    <div class="container-fluid">
+        <h1>{{trans('main.Categories and Products')}}</h1>
+    </div>
+     @include('layouts.trans-selector')
 </nav>
+
 <div class="container mt-5">
     <div class="row">
 
@@ -28,15 +27,16 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <a class="btn btn-sm btn-success" href={{ route('category.index') }}> Categories</a>
+                        <a class="btn btn-sm btn-success" href={{ route('category.index') }}>{{trans('main.Categories')}} </a>
 
-                            <a class="btn btn-sm btn-success" href={{ route('product.index') }}> Products</a>
+                            <a class="btn btn-sm btn-success" href={{ route('product.index') }}> {{trans('main.Products')}}</a>
 
                     </div>
 
             </div>
 
     </div>
+</div>
 </div>
 </body>
 

@@ -9,7 +9,7 @@ class CategoryRepository implements CategoryRepositoryInterface
 
     public function index()
     {
-        $categories=Category::with('Products')->get();
+        $categories=Category::with('products')->get();
 
         return view('Category.index',compact('categories'));
 
@@ -22,9 +22,13 @@ class CategoryRepository implements CategoryRepositoryInterface
 
     public function store($request)
     {
+
         Category::create([
-            'name_ar'=>$request->name_ar,
-            'name_en'=>$request->name_en,
+            'name' => [
+                'en' => $request->name_en,
+                'ar' => $request->name
+            ],
+            'description'=>$request->description
         ]);
         return redirect()->route('category.index');
     }
