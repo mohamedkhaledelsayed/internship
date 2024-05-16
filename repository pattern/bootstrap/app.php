@@ -3,6 +3,12 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect;
+use Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect;
+use Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes;
+use Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath;
+use Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -11,7 +17,13 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->alias([
+            'localize'                => LaravelLocalizationRoutes::class,
+            'localizationRedirect'    => LaravelLocalizationRedirectFilter::class,
+            'localeSessionRedirect'   => LocaleSessionRedirect::class,
+            'localeCookieRedirect'    => LocaleCookieRedirect::class,
+            'localeViewPath'          => LaravelLocalizationViewPath::class
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

@@ -40,7 +40,20 @@ class ProductController extends Controller
         $validated = $request->validated();
         return $this->productService->store($request);
     }
+    /**
+     *edit this product
+     */
+    public function edit($id)
+    {
+        return $this->productService->edit($id);
 
+    }
+
+    public function update(ProductRequest $request,$id)
+    {
+        $validated = $request->validated();
+        return $this->productService->update($request,$id);
+    }
     /**
      * Display the specified resource.
      */

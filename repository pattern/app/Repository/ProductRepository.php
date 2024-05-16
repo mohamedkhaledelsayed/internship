@@ -1,7 +1,10 @@
-<?php 
+<?php
 namespace App\Repository;
-use App\Models\Category;
 use App\Models\Product;
+use App\Models\Category;
+use App\Http\Requests\ProductRequest;
+use Illuminate\Support\Facades\Storage;
+
 class ProductRepository implements ProductInterface {
 
      // Function to get all products with their associated categories
@@ -19,22 +22,46 @@ class ProductRepository implements ProductInterface {
         return view('Product.create',compact('categories'));
     }
 
-    public function store($request)
-{        
-    $product = new Product();
-    
-    $product->name_ar = $request->name_ar;
-    $product->name_en = $request->name_en;
-    $product->description = $request->description;
-    $product->price = $request->price;
-    $product->category_id = $request->category_id;
-   $image_name = $request->file('image')->getClientOriginalName();
-   $imagePath = $request->file('image')->storeAs('storage/images', $image_name, 'public');
-   $request->file('image')->move('storage/images',$image_name,'public');
-  $product->image = '/public/images' . '/'.$image_name;
-    $product->save();
-    return redirect()->route('product.index');
-}
+
+    public function store(ProductRequest $request)
+    {
+        $data = $request->only(['name_ar', 'name_en', 'description', 'price', 'category_id']);
+
+        $image_name = $request->file('image')->getClientOriginalName();
+        $imagePath = $request->file('image')->storeAs('storage/images', $image_name, 'public');
+        $request->file('image')->move('storage/images',$image_name,'public');
+        $data['image'] = '/storage/images' . '/'.$image_name;
+
+        Product::create($data);
+
+        return redirect()->route('product.index');
+    }
+
+
+
+    public function edit($id)
+    {
+    $product = Product::findOrFail($id);
+    $categories = Category::all();
+    return view('Product.edit', compact('product', 'categories'));
+    }
+
+    public function update($request, $id)
+    {
+        $product = Product::findOrFail($id);
+
+        $data = $request->only(['name_ar', 'name_en', 'description', 'price', 'category_id']);
+
+        $image_name = $request->file('image')->getClientOriginalName();
+        $imagePath = $request->file('image')->storeAs('storage/images', $image_name, 'public');
+        $request->file('image')->move('storage/images',$image_name,'public');
+        $data['image'] = '/storage/images' . '/'.$image_name;
+
+        $product->update($data);
+        return redirect()->route('product.index');
+    }
+
+
     public function destroy($id)
     {
         $product = Product::findOrFail($id);

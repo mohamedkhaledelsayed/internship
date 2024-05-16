@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace App\Services;
 
 use App\Repository\CategoryInterface;
@@ -24,6 +24,14 @@ class CategoryService
 
     public function destroy($category){
         return $this->categoryrepository->destroy($category);
+
+    }
+    public function edit($id){
+        return $this->categoryrepository->edit($id);
+
+    }
+    public function update($request,$id){
+        return $this->categoryrepository->update($request,$id);
 
     }
 }

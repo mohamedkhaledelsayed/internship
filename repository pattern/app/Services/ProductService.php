@@ -2,8 +2,9 @@
 
 namespace App\Services;
 
-use App\Repository\CategoryInterface;
 use App\Repository\ProductInterface;
+use App\Http\Requests\ProductRequest;
+use App\Repository\CategoryInterface;
 
 class ProductService
 {
@@ -19,8 +20,18 @@ class ProductService
 
     }
 
-    public function store($request){
+    public function store(ProductRequest $request){
         return $this->productrepository->store($request);
+    }
+
+
+    public function edit($id){
+        return $this->productrepository->edit($id);
+
+    }
+
+    public function update($request,$id){
+        return $this->productrepository->update($request,$id);
 
     }
 

@@ -8,51 +8,57 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
-    <title>Product</title>
+    <title>{{ __('home.Products') }}</title>
 </head>
 
 <body>
     <nav class="navbar">
         <div class="container-fluid">
-            <h1>Product</h1>
+            <h1>{{ __('home.Products') }}</h1>
             <div class="justify-end ">
                 <div class="col ">
-
-                    <a class="btn btn-sm btn-success" href={{ route('product.create') }}>Add product</a>
+                    <x-language-selector></x-language-selector>
                 </div>
+                <a class="btn btn-sm btn-success" href={{ route('product.create') }}>{{ __('home.Create Product') }}</a>
+                <a class="btn btn-sm btn-success" href='/'>{{ __('home.Home') }}</a>
             </div>
+        </div>
     </nav>
     <div class="container mt-5">
         <div class="row">
             @foreach ($products as $product)
-            <div class="col-sm">
-                <div class="card">
-                    <div class="card-body">
-                        <label>الاسم</label>
-                        <p class="card-text">{{ $product->name_ar }}</p>
-                        <label>Name</label>
-                        <p class="card-text">{{ $product->name_en }}</p>
-                        <label>الوصف</label>
-                        <p class="card-text">{{ $product->description}}</p>
-                        <label>السعر</label>
-                        <p class="card-text">{{$product->price }}</p>
-                        <label>الصورة</label>
-                        <br>
-                        <img src="{{ $product->image }}" alt="{{ $product->name_en }}">
-                        <br>
-                        <label>الصنف</label>
-                        <p class="card-text">{{$product->Category->name_ar }}</p>
+                <div class="col-sm">
+                    <div class="card">
+                        <div class="card-body">
+                            <label>{{ __('home.name_ar') }}</label>
+                            <p class="card-text">{{ $product->name_ar }}</p>
+                            <label>{{ __('home.name_en') }}</label>
+                            <p class="card-text">{{ $product->name_en }}</p>
+                            <label>{{ __('home.description') }}</label>
+                            <p class="card-text">{{ $product->description }}</p>
+                            <label>{{ __('home.price') }}</label>
+                            <p class="card-text">{{ $product->price }}</p>
+                            <label>{{ __('home.image') }}</label>
+                            <br>
+                            <img src="{{ asset($product->image) }}" alt="{{ $product->name_en }}">
+                            <br>
+                            <label>{{ __('home.Category') }}</label>
+                            <p class="card-text">{{ $product->Category->name_ar }}</p>
 
-                    </div>
-                    <div class="col-sm">
-                        <form action="{{ route('product.destroy', $product->id) }}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                        </form>
+                        </div>
+                        <div class="col-sm">
+                            <form action="{{ route('product.destroy', $product->id) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm">{{ __('home.Delete') }}</button>
+                            </form>
+                            <div class="col-sm">
+                                <a href="{{ route('product.edit', $product->id) }}"
+                                    class="btn btn-primary btn-sm">{{ __('home.edit') }}</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
             @endforeach
         </div>
     </div>

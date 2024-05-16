@@ -33,4 +33,21 @@ class CategoryRepository implements CategoryInterface {
         return redirect()->route('category.index');
 
     }
+    public function update($request, $id)
+    {
+
+        $category = Category::findOrFail($id);
+
+        $category->update([
+            'name_ar'=>$request->name_ar,
+            'name_en'=>$request->name_en,
+        ]);
+        return redirect()->route('category.index');
+    }
+    public function edit($id)
+    {
+        $category = Category::findOrFail($id);
+        return view('Category.edit', compact('category'));
+
+    }
 }
