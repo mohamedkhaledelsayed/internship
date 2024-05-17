@@ -24,8 +24,8 @@ class ProductRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'price' => 'required|integer',
-            'category_id' => 'required'
-
+            'category_id' => 'required',
+            'image' => 'required|image|mimes:jpg,jpeg,png',
 
         ];
     }
@@ -39,6 +39,9 @@ class ProductRequest extends FormRequest
             'price.required' => 'The price field is required.',
             'price.integer' => 'The price field must be a integer.',
             'category_id.required' => 'The category field  is required.',
+            'image.required'=> 'The image field  is required.',
+            'image.image'=> 'The image field  should be image.',
+
         ];
     }
 }

@@ -28,14 +28,14 @@
                 @csrf
                 <div class="form-group">
                     <label for="title">{{trans('main.name')}}</label>
-                    <input type="text" class="form-control" name="name" required>
+                    <input type="text" class="form-control" name="name" >
                     @if($errors->has('name'))
                         <div class="alert alert-danger">{{ $errors->first('name') }}</div>
                     @endif
                 </div>
                 <div class="form-group">
                     <label for="title">{{trans('main.price')}}</label>
-                    <input type="text" class="form-control"  name="price" required>
+                    <input type="text" class="form-control"  name="price" >
                     @if($errors->has('price'))
                         <div class="alert alert-danger">{{ $errors->first('price') }}</div>
                     @endif
@@ -43,7 +43,9 @@
                 <div class="form-group">
                     <label for="title">{{trans('main.image')}}</label>
                     <input type="file" class="form-control"  name="image" >
-
+                    @if($errors->has('image'))
+                        <div class="alert alert-danger">{{ $errors->first('image') }}</div>
+                    @endif
                 </div>
                 <div class="form-group col-md-6">
                     <label >{{trans('main.Category')}}</label>

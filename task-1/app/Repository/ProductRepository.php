@@ -5,10 +5,13 @@ namespace App\Repository;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Traits\MangeImage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class ProductRepository implements ProductRepositoryInterface
 {
+    use MangeImage;
 
     public function index()
     {
@@ -25,23 +28,13 @@ class ProductRepository implements ProductRepositoryInterface
     public function store($request)
     {
 
+        $validated = $request->validated();
 
-        $product = new Product();
+        $filepath=$this->addImage($request,'image','public');
 
-        $product->name = $request->name;
-        $product->price = $request->price;
-        $product->category_id = $request->category_id;
+        $validated['image'] =  $filepath;
 
-
-        if ($request->hasfile('image')) {
-            $image_name = $request->file('image')->getClientOriginalName();
-
-            $request->file('image')->move('images/',$image_name,'public');
-           // $request->file('image')->storAs('images/',$image_name,'public');
-            $product->image = '/public/images' . '/'.$image_name;
-        }
-
-        $product->save();
+        $create = Product::create($validated);
 
         return redirect()->route('product.index');
 
@@ -65,25 +58,17 @@ class ProductRepository implements ProductRepositoryInterface
     {
 
         $product = Product::findOrFail($id);
+        $validated = $request->validated();
 
+        $old_image=$product->image;
 
-
-        if ($request->hasfile('image')) {
-            File::delete($product->image);
-            $image_name = $request->file('image')->getClientOriginalName();
-
-            $request->file('image')->move('images/',$image_name,'public');
-
-            // $request->file('image')->storAs('images/',$image_name,'public');
-            $product->image = '/public/images' . '/'.$image_name;
-
+        if ($request->hasfile('image')){
+            $filePath=$this->updateImage($old_image,'image','public');
+            $validated['image'] = $filePath;
         }
-        $product->name=$request->name;
-        $product->price=$request->price;
-        $product->category_id= $request->category_id;
-        $product->image=$request->image;
 
-        $product->save();
+        $update = $product->update($validated);
+
         return redirect()->route('product.index');
 
     }
@@ -91,7 +76,10 @@ class ProductRepository implements ProductRepositoryInterface
     public function destroy($id)
     {
         $product = Product::findOrFail($id);
+        $img=$product->image;
+        $this->deleteImage($img,'public');
         $product->delete();
+
         return redirect()->route('product.index');
 
     }

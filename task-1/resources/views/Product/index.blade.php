@@ -31,7 +31,9 @@
                         <label>{{trans('main.price')}}</label>
                         <p class="card-text">{{$product->price }}</p>
                         <label>{{trans('main.image')}}</label>
-                        <p class="card">{{$product->image }}</p>
+                        <br>
+                        <img class="h-14 w-25" src="{{ Storage::url($product->image) }}" alt="{{ $product->name }}" srcset="">
+                            <br>
                         <label>{{trans('main.Category')}}</label>
                         <p class="card-text">{{$product->Category->name }}</p>
 
