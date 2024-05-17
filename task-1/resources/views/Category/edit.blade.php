@@ -28,12 +28,18 @@
                 @method('PUT')
                 <div class="form-group">
                     <label for="title">{{trans('main.name_ar')}}</label>
-                    <input type="text" class="form-control" id="title" name="name_ar"
-                           value="{{ $category->name_ar }}" >
+                    <input type="text" class="form-control" id="title" name="ar[name]"
+                    >
+                    @if($errors->has('ar.name'))
+                        <div class="alert alert-danger">{{ $errors->first('ar.name') }}</div>
+                    @endif
                 </div>
                 <div class="form-group">
                     <label for="body">{{trans('main.name_en')}}</label>
-                    <textarea class="form-control" id="body" name="name_en" rows="3" >{{ $category->name_en }}</textarea>
+                    <textarea class="form-control" id="body" name="en[name]" rows="3" ></textarea>
+                    @if($errors->has('en.name'))
+                        <div class="alert alert-danger">{{ $errors->first('en.name') }}</div>
+                    @endif
                 </div>
                 <div class="form-group">
                     <label for="title">{{trans('main.description')}}</label>

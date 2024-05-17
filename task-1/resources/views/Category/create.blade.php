@@ -28,19 +28,20 @@
                 @csrf
                 <div class="form-group">
                     <label for="title">{{trans('main.name_ar')}} </label>
-                    <input type="text" class="form-control" name="name" >
-                    @if($errors->has('name'))
-                        <div class="alert alert-danger">{{ $errors->first('name') }}</div>
+                    <input type="text" class="form-control" name="ar[name]" >
+                    @if($errors->has('ar.name'))
+                        <div class="alert alert-danger">{{ $errors->first('ar.name') }}</div>
                     @endif
                 </div>
                 <div class="form-group">
                     <label for="title">{{trans('main.name_en')}}</label>
-                    <input type="text" class="form-control"  name="name_en" >
-                    @if($errors->has('name_en'))
-                        <div class="alert alert-danger">{{ $errors->first('name_en') }}</div>
+                    <input type="text" class="form-control"  name="en[name]" >
+                    @if($errors->has('en.name'))
+                        <div class="alert alert-danger">{{ $errors->first('en.name') }}</div>
                     @endif
                 </div>
-        <div class="form-group">
+
+              <div class="form-group">
                     <label for="title">{{trans('main.description')}}</label>
                    <textarea type="text" class="form-control"  name="description" >
                             </textarea>

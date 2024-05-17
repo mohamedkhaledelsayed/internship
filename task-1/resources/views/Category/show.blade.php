@@ -27,7 +27,7 @@
         <div class="card">
             <div class="card-body">
                 <label>{{trans('main.name')}}</label>
-                <p class="card-title">{{ $category->name }}</p>
+                <input type="text" readonly value="" class="card-title">{{ $category->name }}</input>
 
                 <label>{{trans('main.Products')}}</label>
 

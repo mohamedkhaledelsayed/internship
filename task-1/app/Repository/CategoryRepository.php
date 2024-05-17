@@ -23,13 +23,7 @@ class CategoryRepository implements CategoryRepositoryInterface
     public function store($request)
     {
 
-        Category::create([
-            'name' => [
-                'en' => $request->name_en,
-                'ar' => $request->name
-            ],
-            'description'=>$request->description
-        ]);
+        Category::create($request->all());
         return redirect()->route('category.index');
     }
 
@@ -50,11 +44,7 @@ class CategoryRepository implements CategoryRepositoryInterface
     {
 
         $category = Category::findOrFail($id);
-
-        $category->update([
-            'name_ar'=>$request->name_ar,
-            'name_en'=>$request->name_en,
-        ]);
+            $category->update($request->validated());
         return redirect()->route('category.index');
 
 

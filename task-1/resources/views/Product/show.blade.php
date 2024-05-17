@@ -36,7 +36,7 @@
                 <img src="{{asset($product->image) }}" class="w-100"  style="width:100px"  >
                 <br>
                 <label>{{trans('main.Category')}}</label>
-               <p>{{ $product->category->name_ar  }}</p>
+               <p>{{ $product->category->name  }}</p>
                 <p class="card-text"></p>
             </div>
 

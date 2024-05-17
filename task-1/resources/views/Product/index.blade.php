@@ -33,7 +33,7 @@
                         <label>{{trans('main.image')}}</label>
                         <p class="card">{{$product->image }}</p>
                         <label>{{trans('main.Category')}}</label>
-                        <p class="card-text">{{$product->Category->name_ar }}</p>
+                        <p class="card-text">{{$product->Category->name }}</p>
 
                     </div>
 

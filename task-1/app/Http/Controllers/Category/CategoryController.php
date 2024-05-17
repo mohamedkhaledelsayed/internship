@@ -38,7 +38,9 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
+
         $validated = $request->validated();
+
         return $this->categoryService->store($request);
 
     }
