@@ -2,18 +2,23 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-
 use App\Models\Category;
-use App\Models\SubCategory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    public function run()
+    /**
+     * Seed the application's database.
+     */
+    public function run(): void
     {
-        Category::factory(5)->create()->each(function ($category) {
-            SubCategory::factory(3)->create(['category_id' => $category->id]);
-        });
+        // User::factory(10)->create();
+
+        // Category::factory(10)->create();
+
+        \App\Models\Product::factory(29)->create();
+
     }
 }
