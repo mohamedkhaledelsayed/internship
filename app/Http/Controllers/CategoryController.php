@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\RepositryPattern\Repositries\CategoryRepo;
+use App\RepositryPattern\Interfaces\CategoryInterface;
 
 
 class CategoryController extends Controller
 {
     
-    public function __construct(protected CategoryRepo $repo){
+    public function __construct(protected CategoryInterface $repo){
     }
 
     /**

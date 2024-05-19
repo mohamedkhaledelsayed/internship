@@ -6,11 +6,11 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
-use App\RepositryPattern\Repositries\ProductRepo;
+use App\RepositryPattern\Interfaces\ProductInterface;
 
 class ProductController extends Controller
 {
-    public function __construct(protected ProductRepo $repo){}
+    public function __construct(protected ProductInterface $repo){}
     
     public function allProducts()
     {
