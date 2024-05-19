@@ -7,33 +7,29 @@
         @csrf
         @method('PUT')
 
-        <div class="form-group">
-            <label for="name">{{trans('main_translation.English Name')}}</label>
-            <input type="text" class="form-control" id="name" name="name[en]" value="{{ $product->getTranslation('name', 'en'); }}" required>
-        </div>
 
         <div class="form-group">
             <label for="name">{{trans('main_translation.Arabic Name')}}</label>
-            <input type="text" class="form-control" id="name" name="name[ar]" value="{{ $product->getTranslation('name', 'ar')}}" required>
+            <input type="text" class="form-control" id="name" name="name[{{ LaravelLocalization::getCurrentLocale() }}]" value="{{ $product->name}}" required>
         </div>
 
-        <div class="form-group">
-            <label for="description">{{trans('main_translation.English description')}}</label>
-            <input type="text" class="form-control" id="description" name="description[en]" value="{{ $product->getTranslation('description', 'ar')}}" required>
-        </div>
+
         <div class="form-group">
             <label for="description">{{trans('main_translation.Arabic description')}}</label>
-            <input type="text" class="form-control" id="description" name="description[ar]" value="{{ $product->getTranslation('description', 'ar')}}" required>
+            <input type="text" class="form-control" id="description" name="description[{{ LaravelLocalization::getCurrentLocale() }}]" value="{{ $product->description}}" required>
         </div>
 
         <div class="form-group">
-            <label for="category_id">{{trans('main_translation.Categories')}}</label>
-            <select class="form-control" id="category_id" name="category_id" required>
-                @foreach($categories as $category)
-                    <option value="{{ $category->id }}" @if($category->id === $product->category_id) selected @endif>{{ $category->getTranslation('name', 'en')}} -- {{ $category->getTranslation('name', 'ar')}} </option>
-                @endforeach
-            </select>
-        </div>
+    <label for="category_id">{{ trans('main_translation.Categories') }}</label>
+    <select class="form-control" id="category_id" name="category_id" required>
+        @foreach($categories as $category)
+            <option value="{{ $category->id }}"
+                {{ isset($product) && $product->category_id == $category->id ? 'selected' : '' }}>
+                {{ $category->name }}
+            </option>
+        @endforeach
+    </select>
+</div>
 
         <button type="submit" class="btn btn-primary">{{trans('main_translation.Update')}}</button>
     </form>

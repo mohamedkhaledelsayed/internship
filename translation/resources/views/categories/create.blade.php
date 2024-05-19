@@ -1,4 +1,5 @@
 @section('content')
+@include('layouts.main-header')
     <h1>{{trans('main_translation.Add Category')}}</h1>
     <form method="POST" action="{{ route('categories.store') }}">
         @csrf

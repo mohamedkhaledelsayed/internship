@@ -1,7 +1,8 @@
 <?php
 
 return [
-    'Description','الوصف',
+    'Description'=>'الوصف',
+    
     'Name'=>'الاسم',
     'Add Category' => 'اضافة فئه',
     'Arabic Name'  => 'الاسم العربي',

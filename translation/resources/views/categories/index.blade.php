@@ -13,16 +13,20 @@
             <thead>
                 <tr>
                     <th> {{trans('main_translation.Name')}}</th>
-
+                    <td></td>
+                    <td></td>
                     <th>{{trans('main_translation.Action')}}</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($categories as $category)
                     <tr>
-                        <td>{{ $category->name_arabic}}</td>
 
-                        <td>{{ $category->getTranslation('name', LaravelLocalization::getCurrentLocale())  }}</td>
+
+                        <td>{{ $category->name  }}</td>
+
+                        <td></td>
+
                         <td>
                             <form action="{{ route('categories.destroy', $category->id) }}" method="POST" style="display: inline;">
                                 @csrf

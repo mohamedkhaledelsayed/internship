@@ -4,18 +4,46 @@ namespace App\Services;
 use App\Repositories\ProductRepositoryInterface;
 use App\Models\Product;
 
+use Illuminate\Http\Request;
+
 class ProductRepository implements ProductRepositoryInterface
 {
     public function create(array $data)
-    {
-        return Product::create($data);
+{
+
+    $categoryId = $data['category_id'];
+
+    $product = new Product(['category_id' => $categoryId]);
+
+
+    foreach ($data['name'] as $locale => $name) {
+        $product->translateOrNew($locale)->name = $name;
     }
+    foreach ($data['description'] as $locale => $description) {
+        $product->translateOrNew($locale)->description = $description;
+    }
+
+    // Save the product
+    $product->save();
+
+    return $product;
+}
+
+
 
 
     public function update(int $id, array $data)
-    {
+    {    $categoryId = $data['category_id'];
         $product = Product::findOrFail($id);
-        $product->update($data);
+        $product->category_id = $categoryId;
+
+    foreach ($data['name'] as $locale => $name) {
+        $product->translateOrNew($locale)->name = $name;
+    }
+    foreach ($data['description'] as $locale => $description) {
+        $product->translateOrNew($locale)->description = $description;
+    }
+        $product->update();
         return $product;
     }
 
@@ -34,22 +62,17 @@ class ProductRepository implements ProductRepositoryInterface
     {
         return Product::all();
     }
-    public function validation($request)
+
+    public function validation(Request $request)
     {
         $validatedData = $request->validate([
             'name' => 'required|array',
-            'name.en' => 'required|string|max:255',
-            'name.ar' => 'required|string|max:255',
+           'name.*' => 'required|string|max:255',
             'description' => 'required|array',
-            'description.en' => 'required|string|min:0',
-             'description.ar' => 'required|string|min:0',
+            'description.*' => 'required|string|min:0',
              'category_id' => 'required|exists:categories,id'
          ]);
-     $productData = [
-         'name' => $request->input('name'),
-         'description' => $request->input('description'),
-         'category_id' => $request->input('category_id'),
-     ];
-     return  $productData;
+
+     return $validatedData;
     }
 }

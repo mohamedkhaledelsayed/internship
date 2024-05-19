@@ -51,13 +51,20 @@ class ProductController extends Controller
         $categories = $this->categoryRepository->all();
         return view('products.create', compact('categories'));
     }
-    public function store(Request $request)
-    {
-        $productData=$this->productRepository->validation($request);
-        Product::create($productData);
 
-        return redirect()->route('products.index')->with('success', 'Product created successfully.');
-    }
+
+public function store(Request $request)
+{
+
+    $productData = $this->productRepository->validation($request);
+
+
+    $this->productRepository->create($productData);
+
+    return redirect()->route('products.index')->with('success', 'Product created successfully.');
+}
+
+
 
 
 

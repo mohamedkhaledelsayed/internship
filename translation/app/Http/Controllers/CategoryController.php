@@ -27,13 +27,11 @@ class CategoryController extends Controller
     }
 
     public function store(Request $request)
-{
-    $categoryData= $this->categoryRepository->validation($request);
-
-    $this->categoryRepository->create($categoryData);
-
-    return redirect()->route('categories.index')->with('success', 'Category created successfully.');
-}
+    {
+        $data = $this->categoryRepository->validation($request);
+        $this->categoryRepository->create($data);
+        return redirect()->route('categories.index');
+    }
 
 
     public function edit(Category $category)

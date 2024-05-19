@@ -1,6 +1,6 @@
 <?php
 namespace App\Repositories;
-
+use Illuminate\Http\Request;
 
 interface ProductRepositoryInterface
 {
@@ -14,5 +14,5 @@ interface ProductRepositoryInterface
 
     public function all();
 
-    public function validation($request);
+    public function validation(Request $request) ;
 }

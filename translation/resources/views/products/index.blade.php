@@ -17,20 +17,35 @@
                 <tr>
 
                     <th>{{trans('main_translation.Name')}}</th>
-                    <th>    {{trans('main_translation.Description')}}</th>
+                    <th></th>
+                    <th></th>
+                    <th>{{trans('main_translation.Description')}}</th>
+                    <th></th>
+                    <th></th>
                     <th>{{trans('main_translation.Categories')}}</th>
+                    <th></th>
+                    <th></th>
 
                     <th> {{trans('main_translation.Action')}}</th>
+
                 </tr>
             </thead>
             <tbody>
                 @foreach ($products as $product)
                     <tr>
-                        <td>{{ $product->getTranslation('name', LaravelLocalization::getCurrentLocale()) }}</td>
-                        <td>   {{ $product->getTranslation('description', LaravelLocalization::getCurrentLocale()) }}</td>
-                        <td>    {{ $product->category->getTranslation('name', LaravelLocalization::getCurrentLocale())}}</td> <!-- Assuming $product has a 'category' relationship -->
+                        <td>{{ $product->name}}</td>
+                        <td></td>
+                        <td></td>
+                        <td>   {{ $product->description }}</td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                               {{ $product->category->name}}</td>
+                               <td></td>
+                        <td></td>
                         <td>
                             <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-primary">{{trans('main_translation.Update')}}</a>
+                            
                             <form action="{{ route('products.destroy', $product->id) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')

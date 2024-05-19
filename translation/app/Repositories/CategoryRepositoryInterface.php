@@ -1,7 +1,7 @@
 <?php
 namespace App\Repositories;
-
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 interface CategoryRepositoryInterface
 {
     public function create(array $data);
@@ -14,5 +14,5 @@ interface CategoryRepositoryInterface
 
     public function all();
 
-    public function validation($request);
+    public function validation(Request $request) ;
 }

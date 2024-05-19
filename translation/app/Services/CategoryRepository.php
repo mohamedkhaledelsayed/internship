@@ -1,20 +1,32 @@
 <?php
 namespace App\Services;
 use App\Repositories\CategoryRepositoryInterface;
-
+use Illuminate\Http\Request;
 use App\Models\Category;
+use Illuminate\Support\Facades\Validator;
 
 class CategoryRepository implements CategoryRepositoryInterface
 {
     public function create(array $data)
     {
-        return Category::create($data);
+        $category = new Category();
+        foreach ($data['name'] as $locale => $name) {
+            $category->translateOrNew($locale)->name = $name;
+        }
+        $category->save();
+        return $category;
     }
 
     public function update(int $id, array $data)
     {
         $category = Category::findOrFail($id);
-        $category->update($data);
+        foreach ($data['name'] as $locale => $name) {
+            $category->translateOrNew($locale)->name = $name;
+        }
+
+        // $category->save();
+        // return $category;
+        $category->update();
         return $category;
     }
 
@@ -33,16 +45,15 @@ class CategoryRepository implements CategoryRepositoryInterface
     {
         return Category::all();
     }
-    public function validation($request){
+
+
+    public function validation(Request $request)
+    {
         $validatedData = $request->validate([
             'name' => 'required|array',
-            'name.en' => 'required|string|max:255',
-            'name.ar' => 'required|string|max:255',
+            'name.*' => 'required|string'
         ]);
 
-        $categoryData = [
-            'name' => $request->input('name'),
-        ];
-        return $categoryData;
+        return $validatedData;
     }
 }
