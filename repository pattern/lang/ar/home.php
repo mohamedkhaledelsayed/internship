@@ -13,7 +13,7 @@ return [
     'description'=>'ملاحظات',
     'Category'=>'الصنف',
 
-    'Create Product'=>'حفظ المنتج',
+    'Create Product'=>'اضافة المنتج',
     'Create category'=>'اضافة الصنف',
     'Update Product'=>'تحديث المنتج',
     'Update category'=>'تحديث المنتج',

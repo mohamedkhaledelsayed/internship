@@ -32,14 +32,19 @@
                     @method('PUT')
                     <div class="form-group">
                         <label for="body">{{ __('home.name_en') }}</label>
-                        <input type="text" class="form-control" id="title" name="name_en"
-                            value="{{ $category->name_en }}">
+                        <input type="text" class="form-control" id="title" name="en[name]"
+                            value="{{ $category->translate('en')->name }}">
                     </div>
 
                     <div class="form-group">
                         <label for="title">{{ __('home.name_ar') }}</label>
-                        <input type="text" class="form-control" id="title" name="name_ar"
-                            value="{{ $category->name_ar }}">
+                        <input type="text" class="form-control" id="title" name="ar[name]"
+                            value="{{ $category->translate('ar')->name }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="title">{{ __('home.description') }}</label>
+                        <textarea type="text" class="form-control" name="description" value="{{ $category->description }}">
+                        </textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">{{ __('home.Update category') }}</button>
                 </form>

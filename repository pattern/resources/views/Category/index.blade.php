@@ -28,29 +28,26 @@
                 </div>
             </div>
     </nav>
-    <div class="container mt-5">
+    <div class="container">
         <div class="row">
             @foreach ($categories as $category)
-                <div class="col-sm-4">
-                    <div class="card shadow mb-4">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
                         <div class="card-body">
-                            <h5 class="card-title">{{ $category->name_en }}</h5>
-                            <p class="card-text">{{ $category->name_ar }}</p>
+                            <h5 class="card-title">{{ $category->translate('en')->name }}</h5>
+                            <p class="card-text">{{ $category->translate('ar')->name }}</p>
+                            <h3 class="card-title">{{ $category->description }}</h3>
                         </div>
-                        <div class="card-footer">
-                            <div class="row">
-                                <div class="col-sm">
-                                    <form action="{{ route('category.destroy', $category->id) }}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                            class="btn btn-danger btn-sm">{{ __('home.Delete') }}</button>
-                                    </form>
-                                </div>
-                                <div class="col-sm">
-                                    <a href="{{ route('category.edit', $category->id) }}"
-                                        class="btn btn-primary btn-sm">{{ __('home.edit') }}</a>
-                                </div>
+                        <div class="card-footer bg-transparent border-top-0">
+                            <div class="d-flex justify-content-between">
+                                <form action="{{ route('category.destroy', $category->id) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"
+                                        class="btn btn-danger btn-sm">{{ __('home.Delete') }}</button>
+                                </form>
+                                <a href="{{ route('category.edit', $category->id) }}"
+                                    class="btn btn-primary btn-sm">{{ __('home.edit') }}</a>
                             </div>
                         </div>
                     </div>

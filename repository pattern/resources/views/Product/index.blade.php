@@ -43,8 +43,9 @@
                             <img src="{{ asset($product->image) }}" alt="{{ $product->name_en }}">
                             <br>
                             <label>{{ __('home.Category') }}</label>
-                            <p class="card-text">{{ $product->Category->name_ar }}</p>
-
+                            <p class="card-text">
+                                {{ app()->getLocale() === 'ar' ? $product->Category->translate('ar')->name : $product->Category->translate('en')->name }}
+                            </p>
                         </div>
                         <div class="col-sm">
                             <form action="{{ route('product.destroy', $product->id) }}" method="post">

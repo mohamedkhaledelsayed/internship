@@ -25,17 +25,22 @@
                     @csrf
                     <div class="form-group">
                         <label for="title">{{ __('home.name_ar') }}</label>
-                        <input type="text" class="form-control" name="name_ar" required>
-                        @if ($errors->has('name_ar'))
-                            <div class="alert alert-danger">{{ $errors->first('name_ar') }}</div>
+                        <input type="text" class="form-control" name="ar[name]" required>
+                        @if ($errors->has('ar[name]'))
+                            <div class="alert alert-danger">{{ $errors->first('ar[name]') }}</div>
                         @endif
                     </div>
                     <div class="form-group">
                         <label for="title">{{ __('home.name_en') }}</label>
-                        <input type="text" class="form-control" name="name_en" required>
-                        @if ($errors->has('name_en'))
-                            <div class="alert alert-danger">{{ $errors->first('name_en') }}</div>
+                        <input type="text" class="form-control" name="en[name]" required>
+                        @if ($errors->has('en[name]'))
+                            <div class="alert alert-danger">{{ $errors->first('en[name]') }}</div>
                         @endif
+                    </div>
+                    <div class="form-group">
+                        <label for="title">{{ __('home.description') }}</label>
+                        <textarea type="text" class="form-control" name="description">
+                                </textarea>
                     </div>
                     <br>
                     <button type="submit" class="btn btn-primary">{{ __('home.Create category') }}</button>

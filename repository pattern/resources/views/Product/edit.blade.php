@@ -72,8 +72,11 @@
                         <select name="category_id" class="form-control">
                             <option>{{ __('home.Select category') }}</option>
                             @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name_ar }} </option>
+                                <option value="{{ $category->id }}">
+                                    {{ app()->getLocale() === 'ar' ? $category->translate('ar')->name : $category->translate('en')->name }}
+                                </option>
                             @endforeach
+
                         </select>
 
                     </div>

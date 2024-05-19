@@ -20,10 +20,11 @@ class CategoryRepository implements CategoryInterface {
 
     public function store($request)
     {
-        Category::create([
-            'name_ar'=>$request->name_ar,
-            'name_en'=>$request->name_en,
-        ]);
+        $category = new Category();
+        $category->description = $request->input('description');
+        $category->translateOrNew('ar')->name = $request->input('ar.name');
+        $category->translateOrNew('en')->name = $request->input('en.name');
+        $category->save();
         return redirect()->route('category.index');
     }
     public function destroy($id)
@@ -37,11 +38,10 @@ class CategoryRepository implements CategoryInterface {
     {
 
         $category = Category::findOrFail($id);
-
-        $category->update([
-            'name_ar'=>$request->name_ar,
-            'name_en'=>$request->name_en,
-        ]);
+        $category->description = $request->input('description');
+        $category->translateOrNew('ar')->name = $request->input('ar.name');
+        $category->translateOrNew('en')->name = $request->input('en.name');
+        $category->save();
         return redirect()->route('category.index');
     }
     public function edit($id)
