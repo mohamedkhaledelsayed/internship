@@ -1,18 +1,12 @@
-<form action="{{ route('categories.store') }}" method="POST" enctype="multipart/form-data">
+<!-- resources/views/categories/create.blade.php -->
+
+<form action="{{ route('categories.store') }}" method="POST">
     @csrf
-    <label for="category_name">Category English Name</label>
-    <input type="text" id="category_name" name="name_en" >
-    @if ($errors->has('name_en'))
-        <span class="error">{{ $errors->first('name_en') }}</span>
-    @endif
-    <label for="category_name">Category Arabic Name</label>
-    <input type="text" id="category_name" name="name_ar" >
-    @if ($errors->has('name_ar'))
-        <span class="error">{{ $errors->first('name_ar') }}</span>
-    @endif
-
-    <input type="submit" >
+    @foreach (config('translatable.locales') as $locale)
+        <div>
+            <label for="name_{{ $locale }}">{{ __('Name') }} ({{ $locale }})</label>
+            <input type="text" id="name_{{ $locale }}" name="name[{{ $locale }}]" required>
+        </div>
+    @endforeach
+    <button type="submit">{{ __('Save') }}</button>
 </form>
-
-</body>
-</html>

@@ -6,11 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-<form action="{{route('categories.create')}}">
-    <button>create category </button>
-</form>
-<form action="{{route('products.create')}}">
-    <button>create Product </button>
-</form>
+
 </body>
 </html>

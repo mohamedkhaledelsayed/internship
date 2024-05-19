@@ -4,6 +4,8 @@ namespace App\RepositryPattern;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
 class CategoryRepo implements CategoriesInterface
 {
     /**
@@ -11,6 +13,7 @@ class CategoryRepo implements CategoriesInterface
      */
     public function index()
     {
+        {{ LaravelLocalization::getCurrentLocale(); }}
         $categories=Category::all();
         return view("categories",compact('categories'));
     }
@@ -28,15 +31,15 @@ class CategoryRepo implements CategoriesInterface
      * Store a newly created resource in storage.
      */
     function store(Request $request){
-        $request->validate([
-            'name_en'=>'required|string|min:3|max:25',
-            'name_ar'=>'required|string|min:3|max:25',
-        ]);
+        $data = $request->all();
+        $category = new Category();
 
-        Category::create([
-            'name_en'=>$request['name_en'],
-            'name_ar'=>$request['name_ar'],
-        ]);
+        foreach (config('translatable.locales') as $locale) {
+            $category->translateOrNew($locale)->name = $data['name'][$locale];
+        }
+
+        $category->save();
+
         return redirect()->route('categories.index');
     }
     /**
@@ -54,20 +57,16 @@ class CategoryRepo implements CategoriesInterface
     public function update(Request $request, $id)
     {
         $category=Category::find($id);
-        if ($category) {
-            $request->validate([
-            'name_en'=>'required|string|min:3|max:25',
-            'name_ar'=>'required|string|min:3|max:25',
-        ]);
+        $data = $request->all();
 
-        $category->update([
-            'name_en'=>$request['name_en'],
-            'name_ar'=>$request['name_ar'],
-        ]);
-            return redirect()->route('categories.index');
+        foreach (config('translatable.locales') as $locale) {
+            $category->translateOrNew($locale)->name = $data['name'][$locale];
         }
-    }
 
+        $category->save();
+
+        return redirect()->route('categories.index');
+    }
 
 
     /**
