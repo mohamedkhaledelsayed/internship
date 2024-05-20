@@ -15,6 +15,10 @@ class ProductService
         return $this->productrepository->index();
     }
 
+    public function fetch_json(){
+        return $this->productrepository->fetch_json();
+    }
+
     public function create(){
         return $this->productrepository->create();
 

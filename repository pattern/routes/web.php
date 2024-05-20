@@ -13,5 +13,6 @@ Route::group(
             return view('index');
         });
      Route::resource('product',ProductController::class);
-    Route::resource('category',CategoryController::class);
+     Route::resource('category',CategoryController::class);
+     Route::get('/fetch-product', [ProductController::class, 'fetch_json']);
 });

@@ -30,6 +30,7 @@ class CategoryService
         return $this->categoryrepository->edit($id);
 
     }
+
     public function update($request,$id){
         return $this->categoryrepository->update($request,$id);
 

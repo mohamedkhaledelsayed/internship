@@ -32,6 +32,12 @@ class ProductController extends Controller
 
     }
 
+    public function fetch_json()
+    {
+        return $this->productService->fetch_json();
+
+    }
+
     /**
      * Store a newly created resource in storage.
      */

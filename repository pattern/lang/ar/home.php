@@ -20,6 +20,7 @@ return [
     'Select category'=>'اختيار المنتج',
     'Edit category'=>'تعديل المنتج',
     'Edit Product'=>'تعديل المنتج',
+    'Delete Product'=>'حذف المنتج',
     'edit'=>'تعديل',
     'Delete'=>'حذف',
     'back'=>'عودة',

@@ -18,6 +18,7 @@ return [
     'Update category'=>'Update category',
     'Edit category'=>'Edit category',
     'Edit Product'=>'Edit Product',
+    'Delete Product'=>'Delete Product',
     'Select category'=>'Select category',
     'edit'=>'edit',
     'Delete'=>'delete',

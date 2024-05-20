@@ -8,6 +8,8 @@ interface ProductInterface
 {
     public function index();
 
+    public function fetch_json();
+
     public function create();
 
     public function store(ProductRequest $request);

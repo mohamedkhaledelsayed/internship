@@ -7,43 +7,51 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductRepository implements ProductInterface {
 
-     // Function to get all products with their associated categories
     public function index()
     {
         $products=Product::with('Category')->get();
-
-        return view('Product.index', ['products' => $products]);
-
+        $categories = Category::all(); // Get all categories
+        return view('Product.index', ['products' => $products
+                                     ,'categories'=>$categories]);
     }
-    // Function to create a new product
+
+
+    public function fetch_json()
+    {
+            $products = Product::with('Category')->get();
+            return response()->json(['products' => $products]);
+    }
+
     public function create()
     {
         $categories = Category::all(); // Get all categories
         return view('Product.create',compact('categories'));
+
     }
 
 
     public function store(ProductRequest $request)
     {
-        $data = $request->only(['name_ar', 'name_en', 'description', 'price', 'category_id']);
-
+    $data = $request->only(['name_ar', 'name_en', 'description', 'price', 'category_id']);
+    // Handle the image upload
+    if ($request->hasFile('image')) {
         $image_name = $request->file('image')->getClientOriginalName();
-        $imagePath = $request->file('image')->storeAs('storage/images', $image_name, 'public');
-        $request->file('image')->move('storage/images',$image_name,'public');
-        $data['image'] = '/storage/images' . '/'.$image_name;
-
-        Product::create($data);
-
-        return redirect()->route('product.index');
+        $imagePath = $request->file('image')->storeAs('public/images', $image_name);
+        $data['image'] = '/storage/images/' . $image_name;
     }
 
+    Product::create($data);
 
+    return response()->json(['message' => 'Product added successfully!']);
+    }
 
     public function edit($id)
     {
-    $product = Product::findOrFail($id);
-    $categories = Category::all();
-    return view('Product.edit', compact('product', 'categories'));
+        $product = Product::findOrFail($id);
+        $categories = Category::all();
+         return response()->json(['status'=>200,
+                                        'product'=>$product,
+                                        'categories'=>$categories]);
     }
 
     public function update($request, $id)
@@ -52,13 +60,16 @@ class ProductRepository implements ProductInterface {
 
         $data = $request->only(['name_ar', 'name_en', 'description', 'price', 'category_id']);
 
+       // Handle the image upload
+         if ($request->hasFile('image')) {
         $image_name = $request->file('image')->getClientOriginalName();
-        $imagePath = $request->file('image')->storeAs('storage/images', $image_name, 'public');
-        $request->file('image')->move('storage/images',$image_name,'public');
-        $data['image'] = '/storage/images' . '/'.$image_name;
+        $imagePath = $request->file('image')->storeAs('public/images', $image_name);
+        $data['image'] = '/storage/images/' . $image_name;
+        }
 
         $product->update($data);
-        return redirect()->route('product.index');
+        return response()->json(['message' => 'Product Update successfully!']);
+
     }
 
 
@@ -66,6 +77,6 @@ class ProductRepository implements ProductInterface {
     {
         $product = Product::findOrFail($id);
         $product->delete();
-        return redirect()->route('product.index');
+        return response()->json(['message' => 'Product Deleted successfully!']);
     }
 }
