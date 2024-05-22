@@ -8,44 +8,49 @@ var firebaseConfig = {
     measurementId: "G-ZYRQ3Q34RY"
 };
 firebase.initializeApp(firebaseConfig);
+
 const messaging = firebase.messaging();
 
 function startFCM() {
-    messaging
-        .requestPermission()
-        .then(function() {
-            return messaging.getToken()
-        })
-        .then(function(response) {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                url: document.body.getAttribute('data-url'),
-                type: 'POST',
-                data: {
-                    token: response
-                },
-                dataType: 'JSON',
-                success: function(response) {
-                    alert('Token stored.');
-                },
-                error: function(error) {
-                    alert(error);
-                },
-            });
-        }).catch(function(error) {
-            alert(error);
+    messaging.requestPermission()
+    .then(function() {
+        return messaging.getToken();
+    })
+    .then(function(token) {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
         });
+        $.ajax({
+            url: document.body.getAttribute('data-url'),
+            type: 'POST',
+            data: {
+                token: token
+            },
+            dataType: 'JSON',
+            success: function(response) {
+                alert('Token stored.');
+            },
+            error: function(error) {
+                alert(error.responseText);
+            },
+        });
+    }).catch(function(error) {
+        alert(error.message);
+    });
 }
+
 messaging.onMessage(function(payload) {
+    console.log("Message received. ", payload);
     const title = payload.notification.title;
     const options = {
         body: payload.notification.body,
-        icon: payload.notification.icon,
+        icon: payload.notification.icon
     };
     new Notification(title, options);
 });
+
+
+
 
