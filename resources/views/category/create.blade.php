@@ -24,7 +24,23 @@
                 <div class="col-sm-10"><button type="submit" class="btn btn-primary" name="submit">Create</button></div>
             </div>
           </form>
+          <select class="form-control js-select2" name="product_id">
+            <option value="">اختر الوحدة</option>
+            @foreach($products as $module)
+                <option value="{{ $module->id }}">{{ $module->name_ar }}</option>
+            @endforeach
+        </select>
+        
         </div>
         
     </main>
   @endsection
+  <script>
+    window.$ = window.jQuery = require('jquery');
+require('select2');
+
+$(document).ready(function() {
+    $('.js-select2').select2();
+});
+
+  </script>

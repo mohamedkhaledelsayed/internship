@@ -2,6 +2,24 @@
 @extends('layout')
 
 @section('content')
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
+@if($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+<!-- بقية الكود لعرض الفئات -->
+
     <div class="container" style="margin-top: 50px;">
 
         <h3 class="text-center text-danger"><b>Laravel CRUD </b> </h3>
