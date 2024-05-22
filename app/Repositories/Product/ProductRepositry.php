@@ -4,6 +4,7 @@ namespace App\Repositories\Product;
 
 use App\Repositories\Product\Productinterface;
 use App\Models\Product;
+use Illuminate\Support\Facades\Log;
 
 class ProductRepositry implements Productinterface
 {
@@ -31,12 +32,19 @@ class ProductRepositry implements Productinterface
     public function store(array $data, string $imageName)
     {
         $product = new Product([
-            'name_ar' => $data['name_ar'],
-            'name_en' => $data['name_en'],
             'price' => $data['price'],
-            'image' => $imageName, // استخدم اسم الصورة المحملة هنا
+            'image' => $imageName,
             'category_id' => $data['category_id'],
         ]);
+
+        foreach (config('translatable.locales') as $locale) {
+            Log::info('Processing locale: ' . $locale);
+            if (isset($data['name'][$locale])) {
+                Log::info('Setting name and description for locale: ' . $locale);
+                $product->translateOrNew($locale)->name = $data['name'][$locale];
+                $product->translateOrNew($locale)->description = $data['description'][$locale];
+            }
+        }
 
         $product->save();
 
@@ -62,6 +70,8 @@ class ProductRepositry implements Productinterface
 
             'name_ar' => $data['name_ar'],
             'name_en' => $data['name_en'],
+            'description_ar' => $data['description_ar'],
+            'description_en' => $data['description_en'],
             'price' => $data['price'],
             'category_id' => $data['category_id'],
             'image' => $imageName,

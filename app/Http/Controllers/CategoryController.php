@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Product;
 use app\Repositories\Category\Categoryinterface;
 use App\Repositories\Category\CategoryRepositry;
 use Illuminate\Http\Request;
@@ -29,7 +30,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('category.create');
+        $products=Product::all();
+        return view('category.create',compact('products'));
     }
 
     /**

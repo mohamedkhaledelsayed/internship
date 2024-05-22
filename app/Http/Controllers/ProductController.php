@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Repositories\Product\ProductRepositry;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
@@ -39,25 +40,38 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name_ar' => 'required',
-            'name_en' => 'required',
-            'price' => 'required',
-            'category_id' => 'required',
-        ]);
+        Log::info('Processing product creation...');
 
-        $imageName = null; // تعيين القيمة الافتراضية للصورة إلى null
+    // تحقق من صحة البيانات
+    $validatedData = $request->validate([
+        'name' => 'required|array',
+        'name.*' => 'string|max:255',
+        'description' => 'required|array',
+        'description.*' => 'string',
+        'price' => 'required|numeric',
+        'category_id' => 'required|exists:categories,id',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    ]);
 
-        if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            $file = $request->file('image');
-            $imageName = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('images/'), $imageName);
-        }
+    Log::info('Validated Data: ', $validatedData);
 
+    // معالجة الصورة إذا كانت موجودة
+    $imageName = null;
+    if ($request->hasFile('image') && $request->file('image')->isValid()) {
+        $file = $request->file('image');
+        $imageName = time() . '_' . $file->getClientOriginalName();
+        $file->move(public_path('images'), $imageName);
+    }
+
+    try {
         $productRepo = new ProductRepositry(new Product());
-        $productRepo->store($request->all(), $imageName);
-
-        return redirect(route('categories.index'));
+        $product = $productRepo->store($validatedData, $imageName);
+        Log::info('Product created successfully.', ['product' => $product]);
+        return redirect(route('categories.index'))->with('success', 'تم إنشاء المنتج بنجاح.');
+    } catch (\Exception $e) {
+        Log::error('Product creation failed: ' . $e->getMessage());
+        return redirect()->back()->withErrors(['error' => 'فشل في إنشاء المنتج: ' . $e->getMessage()]);
+    }
     }
 
 
@@ -89,8 +103,10 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name_ar' => 'required',
-            'name_en' => 'required',
+            'name' => 'required',
+            // 'name_en' => 'required',
+            // 'description_ar' => 'required',
+            'description' => 'required',
             'price' => 'required',
             'category_id' => 'required',
 
@@ -111,6 +127,8 @@ class ProductController extends Controller
 
             'name_ar' => $request->input('name_ar'),
             'name_en' => $request->input('name_en'),
+            'description_ar' => $request->input('description_ar'),
+            'description_en' => $request->input('description_en'),
             'price' => $request->input('price'),
             'category_id' => $request->input('category_id'),
             'image' => $request->input('image'),

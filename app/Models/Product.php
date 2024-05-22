@@ -2,21 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
-class Product extends Model
+use Astrotomic\Translatable\Translatable;
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+class Product extends Model implements TranslatableContract
 {
-    use HasFactory;
+    use Translatable;
 
-    protected $fillable = [
-        'name_ar',
-        'name_en',
-        'image',
-        'price',
-        'category_id',
-    ];
+    public $translatedAttributes = ['name', 'description'];
+    protected $fillable = ['price', 'image', 'category_id'];
 
+
+    
     public function category()
     {
         return $this->belongsTo(Category::class);
