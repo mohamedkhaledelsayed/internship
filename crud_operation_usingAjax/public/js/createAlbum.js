@@ -22,10 +22,6 @@ $(document).ready(function () {
                                             '<span>' + response.name + '</span>' +
                                             '<button class="btn btn-primary btn-sm edit-album-button" data-id="' + response.id + '">Edit</button>' +
 
-                                            '<button class="btn btn-danger btn-sm delete-album-button" data-id="' + response.id + '">Delet</button>'+
-
-
-
                                         '</div>' +
                                         '<div class="pictures mt-3"></div>' + // Container for pictures
                                     '</li>';
@@ -57,19 +53,20 @@ $(document).ready(function () {
         $('#createAlbumForm').submit(); // Trigger the form submission
     });
 
-    // Delete album
-    $(document).on('click', '.btn-delete', function () {
-        var albumId = $(this).data('id');
-        var albumContainer = $(this).closest('.list-group-item');
-        $.ajax({
-            url: '/albums/' + albumId,
-            method: 'DELETE',
-            success: function () {
-                albumContainer.remove(); // Remove the deleted album directly from the DOM
-            },
-            error: function (xhr, status, error) {
-                console.error(xhr.responseText); // Handle error
-            }
-        });
+    // // Delete album
+    // $(document).on('click', '.btn-delete', function () {
+    //     var albumId = $(this).data('id');
+    //     var albumContainer = $(this).closest('.list-group-item');
+    //     $.ajax({
+    //         url: '/albums/' + albumId,
+    //         method: 'DELETE',
+    //         success: function () {
+    //             albumContainer.remove(); // Remove the deleted album directly from the DOM
+    //         },
+    //         error: function (xhr, status, error) {
+    //             console.error(xhr.responseText); // Handle error
+    //         }
+    //     });
     });
-});
+//});
+

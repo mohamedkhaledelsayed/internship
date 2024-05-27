@@ -10,9 +10,10 @@ use App\Http\Requests\UpdateAlbumRequest;
 use App\Http\Requests\DeleteOrMovePicturesRequest;
 use App\Services\SearchByName;
 use App\Services\PictureService;
-
+use App\Traits\ImageTrait;
 class AlbumController extends Controller
 {
+    use ImageTrait;
     protected $albumRepository;
 
 
@@ -24,7 +25,7 @@ class AlbumController extends Controller
 
     public function index()
     {
-        $albums = Album::all();
+        $albums =  $this->albumRepository->all();
         return view('albums.index', compact('albums'));
     }
 
@@ -39,7 +40,7 @@ class AlbumController extends Controller
         $album = $this->albumRepository->createAlbum($request->only('name'));
 
         if ($request->has('pictures')) {
-            $this->albumRepository->addPicturesToAlbum($album, $request->pictures);
+            $this->addPicturesToAlbum($album, $request->pictures);
         }
 
         return response()->json($album->load('pictures'));
@@ -56,6 +57,9 @@ class AlbumController extends Controller
     public function update(UpdateAlbumRequest $request, Album $album)
     {
         $this->albumRepository->updateAlbum($album, $request->all());
+        if (isset($request['pictures'])){
+            $this->addPicturesToAlbum($album, $request->pictures);
+        }
         return response()->json($album->load('pictures'));
     }
 

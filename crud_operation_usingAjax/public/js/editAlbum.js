@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    // Open edit album modal and load existing album data
     $(document).on('click', '.edit-album-button', function () {
         var albumId = $(this).data('id');
         $.ajax({
@@ -13,10 +12,12 @@ $(document).ready(function () {
                     $('#edit-name').val(response.name);
 
                     var existingPicturesHtml = '';
-                    response.pictures.forEach(function (picture) {
-                        existingPicturesHtml += `<div class="picture" data-id="${picture.id}">
+                    response.pictures.forEach(function (picture, index) {
+                        existingPicturesHtml += `<div class="form-group existing-picture" data-id="${picture.id}">
                                                     <img src="${picture.image_path}" alt="${picture.name}" class="picture-image" style="max-width: 150px;">
-                                                    <span class="picture-name">${picture.name}</span>
+                                                    <input type="text" name="existing_pictures[${index}][name]" class="form-control" value="${picture.name}" placeholder="Picture Name">
+                                                    <input type="file" name="existing_pictures[${index}][image]" class="form-control">
+                                                    <input type="hidden" name="existing_pictures[${index}][id]" value="${picture.id}">
                                                 </div>`;
                     });
                     $('#existing-pictures-container').html(existingPicturesHtml);
@@ -44,13 +45,13 @@ $(document).ready(function () {
             contentType: false,
             success: function (response) {
                 $('#editAlbumModal').modal('hide');
-                $('#editAlbumForm')[0].reset(); // Correct the form reset
+                $('#editAlbumForm')[0].reset();
 
                 var updatedAlbumHtml = `<li class="list-group-item" id="album_id_${response.id}">
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <span class="album-name">${response.name}</span>
                                                 <button class="btn btn-primary btn-sm edit-album-button" data-id="${response.id}">Edit</button>
-                                                <button class="btn btn-danger btn-sm delete-album-button" data-id="${response.id}" >Delet</button>
+                                
                                             </div>
                                             <div class="pictures mt-3">`;
                 response.pictures.forEach(function (picture) {
@@ -79,4 +80,5 @@ $(document).ready(function () {
                              </div>`;
         $('#new-pictures-container').append(newPictureHtml);
     });
+
 });
