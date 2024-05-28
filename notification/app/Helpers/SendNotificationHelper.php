@@ -1,13 +1,13 @@
 <?php
-namespace App\Repositories;
+
 use App\Models\User;
+use Illuminate\Http\Request;
 
 
-class SendNotification{
-
-
-public function Notification ($request){
-    $url = 'https://fcm.googleapis.com/fcm/send';
+if (!function_exists('sendNotification')) {
+    function sendNotification(Request $request)
+    {
+        $url = 'https://fcm.googleapis.com/fcm/send';
 
         $FcmToken = User::whereNotNull('device_token')->pluck('device_token')->all();
 
@@ -48,5 +48,5 @@ public function Notification ($request){
         // FCM response
         return $result;
     }
-}
+    }
 

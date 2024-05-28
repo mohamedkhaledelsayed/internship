@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Helpers;
+use Illuminate\Http\Request;
+use Auth ;
 
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 
-class UpdateDeviceToken
-{
-    public function updateDeviceToken($request)
+
+if (!function_exists('updateDeviceToken')) {
+function updateDeviceToken(Request $request)
     {
         Auth::user()->device_token =  $request->token;
         Auth::user()->save();
@@ -15,8 +15,6 @@ class UpdateDeviceToken
         return response()->json(['Token successfully stored.']);
     }
 }
-
-
 
 
 
