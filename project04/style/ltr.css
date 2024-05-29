@@ -353,7 +353,7 @@ p {
   background-color: rgb(32, 36, 68);
   padding: 2dvh;
   padding-right: 0.9dvh;
-  display: none;
+  display: block;
   transition: max-height 5s, padding !important;
   overflow: hidden !important;
   /* height: 30dvh; */
