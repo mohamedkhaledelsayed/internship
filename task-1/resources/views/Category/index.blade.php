@@ -25,9 +25,11 @@
 </nav>
 <div class="container mt-5">
     <div class="col ">
-
+        @can('add category')
         <a class="btn btn-sm btn-success" href={{ route('category.create') }}>{{trans('main.add category')}}</a>
+        @endcan
     </div>
+
     <div class="row">
 
         @foreach ($categories as $category)
@@ -62,17 +64,18 @@
                     <div class="card-footer">
                         <div class="row">
                             <div class="col-sm">
+                                @can('edit category')
                                 <a href="{{ route('category.edit', $category->id) }}"
                                    class="btn btn-primary btn-sm">{{trans('main.edit')}}</a>
-                            </div> <div class="col-sm">
-                                <a href="{{ route('category.show', $category->id) }}"
-                                   class="btn btn-success btn-sm">{{trans('main.show')}}</a>
-                            </div>
+                                @endcan
+
                             <div class="col-sm">
                                 <form action="{{ route('category.destroy', $category->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">{{trans('main.delete')}}</button>
+                                    @can('delete category')
+                                        <button type="submit" class="btn btn-danger btn-sm">{{trans('main.delete')}}</button>
+                                    @endcan
                                 </form>
                             </div>
                         </div>
@@ -81,7 +84,7 @@
             </div>
         @endforeach
     </div>
-    <a href="{{route('index')}}" class="btn btn-success "> {{trans('main.back')}}</a>
+    <a href="{{route('dashboard')}}" class="btn btn-success "> {{trans('main.back')}}</a>
 </div>
 </body>
 

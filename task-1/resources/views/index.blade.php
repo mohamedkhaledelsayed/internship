@@ -27,9 +27,6 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <a class="btn btn-sm btn-success" href={{ route('category.index') }}>{{trans('main.Categories')}} </a>
-
-                            <a class="btn btn-sm btn-success" href={{ route('product.index') }}> {{trans('main.Products')}}</a>
 
                     </div>
 

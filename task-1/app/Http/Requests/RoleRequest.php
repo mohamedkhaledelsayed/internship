@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProductUpdateRequest extends FormRequest
+class RoleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,10 +22,19 @@ class ProductUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
-            'price' => 'required|integer',
-            'category_id' => 'required',
-            'image' => 'nullable|image|max:1024|mimes:jpg,jpeg,png',
+            'name' => 'required',
+            'permission' => 'required',
+
+        ];
+    }
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'The name field is required.',
+
+            'permission.required' => 'The permission field is required.',
+
+
         ];
     }
 }

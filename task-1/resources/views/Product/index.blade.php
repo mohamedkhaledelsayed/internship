@@ -20,8 +20,10 @@
     </div>
 </nav>
 <div class="container mt-5">
+    @can('add product')
     <a class="btn btn-sm btn-success" href={{ route('product.create') }}>{{trans('main.add product')}}</a>
-    <div class="row">
+    @endcan
+        <div class="row">
         @foreach ($products as $product)
             <div class="col-sm">
                 <div class="card">
@@ -42,18 +44,22 @@
                     <div class="card-footer">
                         <div class="row">
                             <div class="col-sm">
+                                @can('edit product')
                                 <a href="{{ route('product.edit', $product->id) }}"
                                    class="btn btn-primary btn-sm">{{trans('main.edit')}}</a>
+                                @endcan
                             </div> <div class="col-sm">
                                 <a href="{{ route('product.show', $product->id) }}"
                                    class="btn btn-success btn-sm">{{trans('main.show')}}</a>
                             </div>
                             <div class="col-sm">
+
                                 <form action="{{ route('product.destroy', $product->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">{{trans('main.delete')}}</button>
-
+                                    @can('delete product')
+                                        <button type="submit" class="btn btn-danger btn-sm">{{trans('main.delete')}}</button>
+                                     @endcan
                                 </form>
                             </div>
                         </div>
@@ -63,7 +69,7 @@
             </div>
         @endforeach
     </div>
-    <a href="{{route('index')}}" class="btn btn-success "> {{trans('main.back')}}</a>
+    <a href="{{route('dashboard')}}" class="btn btn-success "> {{trans('main.back')}}</a>
 
 </div>
 </body>
