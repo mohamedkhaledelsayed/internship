@@ -2,18 +2,29 @@
 
 namespace App\Http\Controllers\Category;
 
+use App\Models\Category;
+use Illuminate\Http\Request;
+use App\Services\CategoryService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
-use App\Models\Category;
-use App\Services\CategoryService;
-use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Routing\Controllers\HasMiddleware;
 
-class CategoryController extends Controller
+class CategoryController extends Controller implements HasMiddleware
 {
 
     public function __construct(
         protected CategoryService $categoryService
     ) {
+    }
+    public static function middleware(): array
+    {
+        return [
+            new Middleware(middleware: 'permission:delete category',only: ['destroy']),
+            new Middleware(middleware: 'permission:update category',only: ['update','edit']),
+            new Middleware(middleware: 'permission:create category',only: ['store','create']),
+            new Middleware(middleware: 'permission:view category',only: ['index']),
+        ];
     }
     /**
      * Display a listing of the resource.
@@ -23,7 +34,6 @@ class CategoryController extends Controller
      return $this->categoryService->index();
 
     }
-
 
 
     /**

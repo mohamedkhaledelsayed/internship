@@ -1,9 +1,13 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
+use App\Http\Middleware\AdminMiddleware;
+use Spatie\Permission\Middleware\RoleMiddleware;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-use Illuminate\Support\Facades\Route;
+use Spatie\Permission\Middleware\PermissionMiddleware;
+use Spatie\Permission\Middleware\RoleOrPermissionMiddleware;
 use Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect;
 use Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect;
 use Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes;
@@ -22,8 +26,13 @@ return Application::configure(basePath: dirname(__DIR__))
             'localizationRedirect'    => LaravelLocalizationRedirectFilter::class,
             'localeSessionRedirect'   => LocaleSessionRedirect::class,
             'localeCookieRedirect'    => LocaleCookieRedirect::class,
-            'localeViewPath'          => LaravelLocalizationViewPath::class
+            'localeViewPath'          => LaravelLocalizationViewPath::class,
+            'role' => RoleMiddleware::class,
+            'permission' => PermissionMiddleware::class,
+            'role_or_permission' => RoleOrPermissionMiddleware::class,
+            'hasRole'=>AdminMiddleware::class
         ]);
+
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

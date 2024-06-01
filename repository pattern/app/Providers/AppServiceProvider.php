@@ -2,13 +2,23 @@
 
 namespace App\Providers;
 
-use App\Repository\CategoryRepository;
+use App\Services\RoleService;
+use App\Services\UserService;
+use App\Services\ProductService;
+use app\Repository\RoleInterface;
+use app\Repository\UserInterface;
+use App\Services\CategoryService;
+use App\Repository\RoleRepository;
+use App\Repository\UserRepository;
+use App\Services\PermissionService;
+use App\Repository\ProductInterface;
 use App\Repository\CategoryInterface;
 use App\Repository\ProductRepository;
-use App\Repository\ProductInterface;
-use App\Services\CategoryService;
-use App\Services\ProductService;
+use App\Repository\CategoryRepository;
+use app\Repository\PermissionInterface;
 use Illuminate\Support\ServiceProvider;
+use App\Repository\PermissionRepository;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -24,6 +34,20 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(ProductService::class, function ($app) {
             return new ProductService($app->make(ProductInterface::class));
         });
+        $this->app->bind(PermissionInterface::class, PermissionRepository::class);
+        $this->app->bind(PermissionService::class, function ($app) {
+            return new PermissionService($app->make(PermissionInterface::class));
+        });
+        $this->app->bind(RoleInterface::class, RoleRepository::class);
+        $this->app->bind(RoleService::class, function ($app) {
+            return new RoleService($app->make(RoleInterface::class));
+        });
+
+        $this->app->bind(UserInterface::class, UserRepository::class);
+        $this->app->bind(UserService::class, function ($app) {
+            return new UserService($app->make(UserInterface::class));
+        });
+
     }
 
     /**

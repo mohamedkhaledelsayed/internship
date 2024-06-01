@@ -14,22 +14,26 @@ $(document).ready(function (){
                 dataType: "json",
                 success: function (response) {
                     $('tbody').html("");
-                    $.each(response.products,function(key,item){
-                        $('tbody').append('<tr>\
-                        <td>'+item.name_ar+'</td>\
-                        <td>'+item.name_en+'</td>\
-                        <td>'+item.description+'</td>\
-                        <td>'+item.price+'</td>\
-                        <td>'+item.category.name+'</td>\
-                        <td> <img src="'+item.image+'" width="50px" height ="50px" alt = "Image"></td>\
-                        <td><button type="button" value="'+item.id+'" class="edit_btn btn btn-success btn-sm">Edit</button></td>\
-                        <td><button type="button" value="'+item.id+'" class="delete_btn btn btn-danger btn-sm">Delete</button></td>\
-                        </tr>');
+                    $.each(response.products, function(key, item) {
+                        let row = '<tr>\
+                            <td>' + item.name_ar + '</td>\
+                            <td>' + item.name_en + '</td>\
+                            <td>' + item.description + '</td>\
+                            <td>' + item.price + '</td>\
+                            <td>' + item.category.name + '</td>\
+                            <td><img src="' + item.image + '" width="50px" height="50px" alt="Image"></td>';
+                        if (item.canUpdate) {
+                            row += '<td><button type="button" value="' + item.id + '" class="edit_btn btn btn-success btn-sm">Edit</button></td>';
+                        }
+                        if (item.canDelete) {
+                            row += '<td><button type="button" value="' + item.id + '" class="delete_btn btn btn-danger btn-sm">Delete</button></td>';
+                        }
+                        row += '</tr>';
+                        $('tbody').append(row);
                     });
                 }
             });
         }
-
         // show delete modal
         $(document).on('click', '.delete_btn',function (e) {
             e.preventDefault();

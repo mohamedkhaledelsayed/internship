@@ -142,8 +142,10 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>{{ __('home.Products') }}</h4>
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#AddProductModal"
-                            class="btn btn-primary btn-sm float-end">{{ __('home.Add Product') }}</a>
+                        @can('create product')
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#AddProductModal"
+                                class="btn btn-primary btn-sm float-end">{{ __('home.Add Product') }}</a>
+                        @endcan
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">

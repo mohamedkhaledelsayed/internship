@@ -12,6 +12,7 @@ return [
     'description'=>'description',
     'image' => 'image',
     'Category'=>'Category',
+    'Categories'=>'Categories',
     'Create Product'=>'Create Product',
     'Create category'=>'Create category',
     'Update Product'=>'Update Product',
@@ -23,6 +24,23 @@ return [
     'edit'=>'edit',
     'Delete'=>'delete',
     'back'=>'back',
-    'Home'=>'home'
+    'Home'=>'home',
+    'Log out'=>'Log out',
+    'Profile'=>'Profile',
+    'Dashboard'=>'Dashboard',
+    'Permissions'=>'Permissions',
+    'Create Permission'=>'Create Permission',
+    'Permission Name'=> 'Permission Name',
+    'Edit Permission'=>'Edit Permission',
+    'Roles'=>'Roles',
+    'Create Role'=>'Create Role',
+    'Role Name'=> 'Role Name',
+    'Edit Role'=>'Edit Role',
+    'Users'=>'Users',
+    'Create User'=>'Create User',
+    'Edit User'=>'Edit User',
+    'Email'=>'Email',
+    'Password'=>'Password',
+    'Log in'=>'Log in'
 
 ];

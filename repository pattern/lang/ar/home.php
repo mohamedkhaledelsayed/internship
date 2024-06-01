@@ -12,7 +12,7 @@ return [
     'image' => 'الصورة',
     'description'=>'ملاحظات',
     'Category'=>'الصنف',
-
+    'Categories'=>'الاصناف',
     'Create Product'=>'اضافة المنتج',
     'Create category'=>'اضافة الصنف',
     'Update Product'=>'تحديث المنتج',
@@ -24,5 +24,23 @@ return [
     'edit'=>'تعديل',
     'Delete'=>'حذف',
     'back'=>'عودة',
-    'Home'=>'الصفحه الرئيسيه'
+    'Home'=>'الصفحه الرئيسيه',
+    'Log out'=>'تسجيل الخروج',
+    'Profile'=>'الملف الشخصى',
+    'Dashboard'=>'لوحة التحكم',
+    'Permissions'=>'الصلاحيات',
+    'Create Permission'=>'اضافة صلاحية',
+    'Permission Name'=> 'اسم الصلاحية',
+    'Edit Permission'=> 'تعديل الصلاحية',
+    'Roles'=>'الادوار',
+    'Create Role'=>'اضافة دور',
+    'Role Name'=> 'اسم الدور',
+    'Edit Role'=>'تعديل الدور',
+    'Users'=>'المستخدمين',
+    'Create User'=>'اضافة مستخدم',
+    'Edit User'=>'تعديل المستخدم',
+    'Email'=>'البريد الالكتروني',
+    'Password'=>'كلمة المرور',
+    'Log in'=>'تسجيل الدخول',
+
 ];

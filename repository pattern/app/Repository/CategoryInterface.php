@@ -8,8 +8,11 @@ interface CategoryInterface
     public function create();
 
     public function store($request);
+
     public function update($request,$id);
+
     public function destroy($id);
+
     public function edit($id);
 
 

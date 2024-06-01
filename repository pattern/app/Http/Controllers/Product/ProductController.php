@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Product;
 
+use App\Models\Product;
+use Illuminate\Http\Request;
+use App\Services\ProductService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
-use App\Models\Product;
-use App\Services\ProductService;
-use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Routing\Controllers\HasMiddleware;
 
-class ProductController extends Controller
+class ProductController extends Controller implements HasMiddleware
 {
     /**
      * Display a listing of the resource.
@@ -16,6 +18,15 @@ class ProductController extends Controller
     public function __construct(
         protected ProductService $productService
     ) {
+    }
+    public static function middleware(): array
+    {
+        return [
+            new Middleware(middleware: 'permission:delete product',only: ['destroy']),
+            new Middleware(middleware: 'permission:update product',only: ['update','edit']),
+            new Middleware(middleware: 'permission:create product',only: ['store','create']),
+            new Middleware(middleware: 'permission:view product',only: ['index']),
+        ];
     }
     public function index()
     {

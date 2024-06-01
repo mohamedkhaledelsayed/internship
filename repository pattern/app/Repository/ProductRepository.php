@@ -23,6 +23,10 @@ class ProductRepository implements ProductInterface {
     public function fetch_json()
     {
             $products = Product::with('Category')->get();
+            $products->each(function ($product) {
+                $product->canUpdate = auth()->user()->can('update product', $product);
+                $product->canDelete = auth()->user()->can('delete product', $product);
+     });
             return response()->json(['products' => $products]);
     }
 
