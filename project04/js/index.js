@@ -1,75 +1,21 @@
 $(document).ready(function () {
-  // let state = true
   $('#toggle-1').click(function () {
-    $('#team-data-1').toggle('blind') // Toggle the display of myElement
-    // console.log($('#team-data-1').toggle('blind')) // Toggle the display of myElement
-    // if ($('#team-data-1')) {
-    //   console.log($('#team-data-1'))
-    //   $('#team-data-1').effect(
-    //     'size',
-    //     {
-    //       to: { height: '30dvh' },
-    //     },
-    //     1000,
-    //   )
-    //   console.log($('#team-data-1'))
-    // } else {
-    //   console.log($('#team-data-1'))
-    // }
-    // $('#team-data-1').removeClass('team-data', 1000)
-    // $('#team-data-1').addClass('team-data-trans', 1000)
-    // $('#team-data-1').toggle({})
-    // if (state) {
-    //   $('#team-data-1').animate(
-    //     {
-    //       height: 30,
-    //     },
-    //     1000,
-    //   )
-    // } else {
-    //   $('#team-data-1').animate(
-    //     {
-    //       height: 0,
-    //     },
-    //     1000,
-    //   )
-    // }
-    // $('#team-data-1').css('transition', 'height 5s')
-    // $('#team-data-1').css('height', '0');
-    // setTimeout(()=> {
-    //   $('#team-data-1').css('height', '30dvh');
-    // },1000)
-    // if ($('#team-data-1').is($('.team-data'))) {
-    // $('#team-data-1').classList.remove('team-data')
-    // $('#team-data-1').classList.add('team-data-trans')
-    // $('#team-data-1').removeClass('team-data').addClass('team-data-trans')
-    // } else {
-    // $('#team-data-1').classList.remove('team-data-trans')
-    // $('#team-data-1').classList.add('team-data')
-    // $('#team-data-1').removeClass('team-data-trans').addClass('team-data')
-    // }
-
-    // $('#team-data-1').toggleClass('open')
-    // $('#team-data-1').toggle()
-    // $('#team-data-1').animate({ height: '30dvh' })
-    // $('#team-data-1').hide(1000)
-    // $('#team-data-1').show(1000)
-    // Toggle the display of myElement
+    $('#team-data-1').toggle('blind', 5000) // Toggle the display of myElement
   })
 })
 $(document).ready(function () {
   $('#toggle-2').click(function () {
-    $('#team-data-2').toggle('blind') // Toggle the display of myElement
+    $('#team-data-2').toggle('blind', 5000) // Toggle the display of myElement
   })
 })
 $(document).ready(function () {
   $('#toggle-3').click(function () {
-    $('#team-data-3').toggle('blind') // Toggle the display of myElement
+    $('#team-data-3').toggle('blind', 5000) // Toggle the display of myElement
   })
 })
 $(document).ready(function () {
   $('#toggle-4').click(function () {
-    $('#team-data-4').toggle('blind') // Toggle the display of myElement
+    $('#team-data-4').toggle('blind', 5000) // Toggle the display of myElement
   })
 })
 
@@ -167,14 +113,6 @@ const transitions = {
 }
 
 const theme = document.querySelector('#theme')
-// console.log(theme)
-// if (theme.getAttribute('href') === 'style/style.css') {
-//   theme.setAttribute('href', 'style/rtl.css')
-//   console.log(theme)
-// } else {
-//   theme.setAttribute('href', 'style/style.css')
-// }
-
 const langSelec = document.querySelector('#lang')
 langSelec.addEventListener('click', (event) => {
   setLanguage(event.target.value)
@@ -187,12 +125,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const setLanguage = (language) => {
   const elements = document.querySelectorAll('[data-i18n]')
-  //   console.log(elements)
   elements.forEach((element) => {
     const translationKey = element.getAttribute('data-i18n')
-    // console.log(translationKey)
     element.textContent = transitions[language][translationKey]
-    // console.log(element.textContent)
   })
   const en = document.querySelector('.EN')
   const ar = document.querySelector('.AR')
@@ -200,13 +135,6 @@ const setLanguage = (language) => {
   const header = document.querySelector('.header')
   const bgcon = document.querySelector('.bg-con')
   const head = document.querySelector('.head-left')
-  // const bghader = document.querySelector('.bg-hader')
-  // const header = document.querySelector('.head-right')
-  // const bort1 = document.querySelector('.bort-1')
-  // const bort2 = document.querySelector('.bort-2')
-  // const bort3 = document.querySelector('.bort-3')
-  // const bort4 = document.querySelector('.bort-4')
-  // const firstnamme = document.querySelector('.firstnamme')
   if (language === 'ar') {
     navbar.dir = 'rtl'
     header.dir = 'rtl'
@@ -215,37 +143,7 @@ const setLanguage = (language) => {
     theme.setAttribute('href', 'style/rtl.css')
     en.classList.remove('active')
     ar.classList.add('active')
-    // firstnamme.placeholder = ' الاسم الاول'
-    // firstnamme.ariaPlaceholder('الاسم الاول')
-    ///////////////////////////////////
-    // bghader.classList.add('bg-header-ar')
-    // bghader.classList.remove('bg-header-en')
-    // bgcon.classList.add('bg-ar-con')
-    // bgcon.classList.remove('bg-en-con')
-    //////////////////////////////////////////
-    // bort1.style.borderLeft = '1px solid white'
-    // bort4.style.backgroundColor = 'red'
-    // bort4.style.borderLeft = 'none ! important'
-    // console.log(bghader)
-    // bort4.style.backgroundColor = 'red'
-    // document.dir = 'rtl'
-    // document.styleSheets('../style/rtl.css')
-
-    ///////////////////////////////
-    // bort4.classList.remove('bort-2-4')
-    // bort2.classList.remove('bort-2-4')
-    // bort1.classList.add('bort-2-4')
-    // bort3.classList.add('bort-2-4')
-    // bort4.classList.remove('border-start')
-    // bort1.classList.add('border-start')
-    //////////////////////////////////////////////////////////////
-    // theme.attributes('href', '/style/rtl.css')
-    // bort1.classList.add('bort-no')
-    // bort3.style.backgroundColor = 'blue'
-    // bort2.style.backgroundColor = 'black'
-    // bort1.classList.add('bort-2-4')
   } else {
-    // console.log(bghader)
     navbar.dir = 'ltr'
     header.dir = 'ltr'
     bgcon.dir = 'ltr'
@@ -253,25 +151,5 @@ const setLanguage = (language) => {
     theme.setAttribute('href', 'style/ltr.css')
     en.classList.add('active')
     ar.classList.remove('active')
-    // firstnamme.placeholder = ' first Name'
-    //////////////////////////////////////////////
-    // bort1.style.borderLeft = 'none'
-    // bort4.style.borderLeft = '1px solid white'
-    // bghader.classList.remove('bg-header-ar')
-    // bghader.classList.add('bg-header-en')
-    // bgcon.classList.remove('bg-ar-con')
-    // bgcon.classList.add('bg-en-con')
-    //////////////////////////////////////////////
-    // document.dir = 'ltr'
-    // document.styleSheets('../style/style.css')
-    ////////////////////////////////////////
-    // bort1.classList.remove('bort-2-4')
-    // bort2.classList.add('bort-2-4')
-    // bort3.classList.remove('bort-2-4')
-    // bort4.classList.add('bort-2-4')
-    // bort4.classList.add('border-start')
-    // bort1.classList.remove('border-start')
-    ///////////////////////////////////
-    // theme.attributes('href', '/style/style.css')
   }
 }
