@@ -9,7 +9,7 @@ use App\RepositryPattern\Interfaces\CategoryInterface;
 class CategoryRepo implements CategoryInterface{
 
     public function allCategories(){
-        return Category::all();
+        return $categoreis = Category::all();
     }
 
     public function getCategory($id){

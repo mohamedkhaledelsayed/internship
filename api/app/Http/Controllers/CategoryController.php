@@ -19,7 +19,8 @@ class CategoryController extends Controller
      */
     public function allCategories()
     {
-        return $this->repo->allCategories();
+        $categories = $this->repo->allCategories();
+        return view('Pages.store', ['categories'=>$categories]);
     }
 
     public function getCategory($id)

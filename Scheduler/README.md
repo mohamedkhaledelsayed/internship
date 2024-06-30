@@ -1,0 +1,1 @@
+use 'php artisan user:deactivate' vommand to run the scheduler
