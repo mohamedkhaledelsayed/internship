@@ -26,3 +26,24 @@ Route::group(['middleware' => 'auth'],function(){
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+use App\Mail\SampleEmail;
+use App\Mail\WelcomeMail;
+
+Route::get('/send-mail', function () {
+    $data = [
+        'name' => 'NPC',
+        'email' => 'test@dummy.com'
+    ];
+
+    \Mail::to('mohamedelmasry2595@gmail.com')->send(new SampleEmail($data));
+
+    return "Mail Sent Successfully!!";
+});
+
+Route::get('/send-email', function () {
+Mail::to('mohamedelmasry2595@gmail.com')->send(new WelcomeMail([
+    'name' => 'Demo',
+]));
+return "Mail Sent Successfully!!";
+});
