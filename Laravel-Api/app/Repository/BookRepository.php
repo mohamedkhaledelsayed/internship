@@ -52,4 +52,5 @@ class BookRepository implements BookRepositoryInterface
             return response()->json(['message' => 'Failed to delete author.', 'error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+
 }

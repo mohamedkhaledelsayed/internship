@@ -2,7 +2,9 @@
 namespace App\Repository;
 
 use App\Models\Authors;
+use App\Mail\AuthorCreate;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Resources\AuthorsResource;
 use App\Repository\AuthorRepositoryInterface;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -18,6 +20,7 @@ class AuthorRepository implements AuthorRepositoryInterface
     public function store($request)
     {
         $author = Authors::create($request->all());
+        Mail::to('admin@example.com')->send(new AuthorCreate($author));
         return response (new AuthorsResource($author), 201);
     }
 

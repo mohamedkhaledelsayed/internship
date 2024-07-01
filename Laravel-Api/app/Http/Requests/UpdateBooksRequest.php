@@ -35,4 +35,7 @@ class UpdateBooksRequest extends FormRequest
             'author_id' => 'required',
         ];
     }
+
 }
+
+

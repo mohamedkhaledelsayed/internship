@@ -1,6 +1,8 @@
 <?php
 
+use App\Mail\AuthorCount;
 use Illuminate\Foundation\Inspiring;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Artisan;
 
 Artisan::command('inspire', function () {
