@@ -19,6 +19,7 @@ class CarResource extends JsonResource
             'name'=>$this->name,
             'number'=>$this->number,
             'image'=>$this->image,
+            'status'=>$this->status,
             'category'=>new CategoryResource($this->category)
         ];
     }

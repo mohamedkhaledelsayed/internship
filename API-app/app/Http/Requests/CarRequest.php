@@ -25,6 +25,7 @@ class CarRequest extends FormRequest
             'name' => 'required|string|max:255',
             'number' => 'required',
             'category_id' => 'required',
+            'status' => 'nullable',
             'image' => 'required|image|mimes:jpg,jpeg,png',
         ];
     }

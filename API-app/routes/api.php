@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CarController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\EmailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,5 +28,6 @@ Route::group(
     function () {
         Route::apiResource('car', CarController::class);
         Route::apiResource('category', CategoryController::class);
-
+        Route::get('send-email',[EmailController::class,'send']);
     });
+

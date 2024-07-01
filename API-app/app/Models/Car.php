@@ -9,7 +9,7 @@ class Car extends Model
 {
     use HasFactory;
 
-    protected $fillable=['name','number','category_id','image'];
+    protected $fillable=['name','number','category_id','image','status'];
 
     public function Category(){
         return $this->belongsTo(Category::class);
