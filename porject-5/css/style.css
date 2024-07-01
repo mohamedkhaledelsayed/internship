@@ -1,0 +1,130 @@
+.fa-phone,
+.text-end .fa-envelope {
+  color: #ff8813 !important;
+}
+.font-inan {
+  /* font-weight: bold; */
+  font-size: 1.5rem;
+}
+.bg-header {
+  background: #d1e3ff !important;
+}
+.active {
+  color: #45a6ed !important;
+}
+.head-2 {
+  top: 90vh;
+  left: 120px;
+}
+@media (max-width: 992px) {
+  .position,
+  .top-100 {
+    position: relative !important;
+  }
+}
+.hov:hover {
+  color: white !important;
+  background-color: #ff8813;
+}
+.active-2 {
+  background: #ff8813 !important;
+}
+.active-2 {
+  colo: width;
+}
+#Layer_1,
+#Layer_2,
+#Layer_3:hover {
+  fill: white;
+}
+#Layer_1,
+#Layer_3 {
+  fill: purple;
+}
+.colo-head {
+  color: purple;
+}
+.nav-link:hover {
+  color: #45a6ed !important;
+}
+.na {
+  align-items: center;
+  color: red;
+  /* justify-content: center !important; */
+  background-color: #d1e3ff;
+}
+.bg-home {
+  background-color: #d1e3ff;
+}
+.btn-bg {
+  background-color: #ff8813;
+  color: #fff;
+}
+.btn-bg:hover {
+  color: #ff8813;
+  bolder: 1px solid;
+  border-color: #ff8813;
+}
+.btn-primary:hover {
+  background-color: transparent;
+  color: #0b5ed7;
+  bolder: 1px solid;
+  border-color: #0b5ed7;
+}
+.bg-ser:hover {
+  background-color: #ff8813;
+  color: #fff;
+}
+/* ===================================================== */
+.testimonial {
+  margin-top: 40px;
+}
+.testimonial .section-heading {
+  /* margin-bottom: 20px; */
+}
+.stars {
+  list-style: none;
+}
+.fa-star {
+  color: gold;
+}
+
+.bg-footer {
+  background-color: #0a0f43;
+}
+.footer .fa-phone,
+.fa-envelope,
+.fa-location-dot {
+  color: #fff !important;
+}
+.footer .btn-primary:hover {
+  background-color: #ff8813;
+}
+/* .position-ab {
+  position: absolute;
+  top: 135vh;
+  right: 400px;
+}
+.position-ab-2 {
+  position: absolute;
+  top: 135vh;
+  left: 400px;
+} */
+/* @media (max-width: 991px) {
+  .ret {
+    transform: rotate(90deg);
+    position: relative;
+    /* left: 5px; */
+/* z-index: 0 !important; */
+/* } */
+
+/* .footer .btn {
+  position: relative;
+  z-index: 2 !important;
+} */
+/* .footer .mar {
+  margin-bottom: 50px !important;
+} */
+/* .fa-brands:hover {
+  color: red !important;
+} */
